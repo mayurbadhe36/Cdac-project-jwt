@@ -28,6 +28,7 @@ public class WebSecurityConfig {
 	private JWTRequestFilter filter;
 
 	// configure BCryptPassword encode bean
+
 	@Bean
 	public PasswordEncoder encoder() {
 		return new BCryptPasswordEncoder();

@@ -1,9 +1,20 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import FacultyNavBar from './FacultyNavBar'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 function UploadAssignment() {
+  useEffect(() => {  
+    if(sessionStorage.getItem("userName")===null){
+       navigate("/");
+    }
+    if(sessionStorage.getItem("userRole")==="ROLE_ADMIN"){
+      navigate("/admin")
+    }
+    if(sessionStorage.getItem("userRole")==="ROLE_STUDENT"){
+      navigate("/student")
+    }
+});
    const [moduleName,setModuleName] = useState('')
    const [description, setDescription] = useState('')
    const [selectedFile, setSelectedFile] = useState();
@@ -44,18 +55,12 @@ const handleFile =function(e){
     <div>
         <FacultyNavBar/>
         <div className="container-fluid">
-              <div className="row justify-content-around align-items-center" style={{height :"98vh" , marginTop:-35}}>
-                      <div className="col-4 p-3 shadow bg-white">
-                         <form id='assignment'>
-                            <span className="head fs-3"><center>Upload Assignment</center></span>
-                                <div className="ui form">
-                                        {/* <div className="field">
-                                            <label>Faculty Name</label>
-                                            <div className="mb-3">
-                                            <input type="text" name="facultyName" className="form-control" placeholder="Enter Faculty Name"value={facultyName}
-          onChange={(e) => setFacultyName(e.target.value)} />
-                                    </div>
-                                 </div> */}
+              <div className="row justify-content-around align-items-center" style={{height :"98vh" , marginTop:20}}>
+                      <div className="col-4 p-5 shadow bg-white rounded">
+                         <form>
+                            <span className="fs-3 fw-bolder" style={{marginTop:-50}}><center><h3>Upload Assignment</h3></center></span>
+                            <br></br>
+                                <div className="ui form">           
                                  <div className="field">
                                      <label>Module Name</label>
                                         <div className="mb-3">
@@ -77,6 +82,7 @@ const handleFile =function(e){
           onChange={(e)=>handleFile(e)}
         />
                                  </div>
+                                 <br></br>
                                     <div className="mb-3 py-3" style={{textAlign:"center"}}>
                                            <button className="btn btn-primary form-control" onClick={submitForm}>Upload</button>
                                     </div>

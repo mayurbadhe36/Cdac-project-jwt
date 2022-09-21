@@ -52,6 +52,12 @@ public interface IFacultyService {
 
 	public AssignmentAnswer updateStudentRemarkByAssignmentAnswerId(String remark, Long id);
 
+	public String deleteAssignmentById(Long id);
+
+	public Assignment getAssignmentById(Long id);
+
+	public Assignment updateAssignmentDetails(Assignment detachedAssignment, Long id);
+
 //	public NoticeBoard getNoticeById(Long id);
 //
 //	public NoticeBoard updateNoticeboard(NoticeBoard notice);

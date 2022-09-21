@@ -2,7 +2,20 @@ import StudentNavBar from "./StudentNavBar"
 import { useEffect ,useState} from 'react';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
+
 function Assignment() {
+    useEffect(() => {   
+      console.log(sessionStorage.getItem("userName"))
+        if(sessionStorage.getItem("userName")===null){
+           navigate("/");
+        }
+        if(sessionStorage.getItem("userRole")==="ROLE_ADMIN"){
+          navigate("/admin")
+        }
+        if(sessionStorage.getItem("userRole")==="ROLE_FACULTY"){
+          navigate("/faculty")
+        }
+    });
   const [searchText, setSearchText] = useState('')
   const [selectedFile, setSelectedFile] = useState();
   const[assignId,setAssignId]=useState('')
@@ -105,16 +118,16 @@ const submitForm = (e) => {
            <StudentNavBar/>
             <div className='cotainer-fluid'>
        <div className="row justify-content-around align-items-center" style={{height :"98vh" , marginTop:0}}>
-       <div className="col-8 p-5 shadow bg-white">
+       <div className="col-8 p-5 shadow bg-white rounded">
        
-           <center><span><h1>View Assignment</h1></span></center>
-           <div className='ui icon input'>
-              <input type='text' placeholder='Enter faculty name or module name' className='prompt' name="searchText" onChange={handleSearchText} value= {searchText}></input>
-              <button ><i class="bi bi-search"></i></button>
+           <center><span className="fs-2 fw-bolder"><h2>Assignment</h2></span></center>
+           <div className='ui search'>
+            <div className='ui icon input' style={{marginLeft:"33rem"}} >
+              <input type='text' placeholder='Enter faculty or module name' className='prompt col-9 rounded border-dark form-control col-10' name="searchText" onChange={handleSearchText} value= {searchText} style={{height:"3rem"}}></input>
             </div>
             <br></br>
-           <table className="table table-striped tabel-secondary">
-           
+            </div>
+           <table className="table table-striped tabel-secondary table-hover">
                  <thead className='table-dark'>
                    <tr>
                   <th>Sr.No</th>

@@ -1,9 +1,21 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import AdminNavBar from './AdminNavBar';
 import {useNavigate} from 'react-router-dom';
 
 function AddStudent() {
+  useEffect(() => {  
+    if(sessionStorage.getItem("userName")===null){
+       navigate("/");
+    }
+    if(sessionStorage.getItem("userRole")==="ROLE_FACULTY"){
+      navigate("/faculty")
+    }
+    if(sessionStorage.getItem("userRole")==="ROLE_STUDENT"){
+      navigate("/student")
+    }
+});
+
     const url="http://localhost:8080/admin/addstudent"
     const navigate = useNavigate();
     const[data,setData]=useState({
@@ -48,8 +60,8 @@ function AddStudent() {
         <AdminNavBar/>
         <div className='cotainer-fluid'>
        <div className="row justify-content-around align-items-center" style={{height :"98vh" , marginTop:0}}>
-       <div className="col-4 p-4 shadow bg-white">
-            <span className='fs-3 mb-3'><center>Add Student</center></span>
+       <div className="col-4 p-4 shadow bg-white rounded">
+            <span className='fs-3 mb-3 fw-bolder' style={{fontFamily:"unset"}}><center><h2>Add Student</h2></center></span>
     <form onSubmit={(e)=>submit(e)}>
           <div className='mb-3'>
            <lable>Student Name</lable><br></br>

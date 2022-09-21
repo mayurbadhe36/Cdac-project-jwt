@@ -248,4 +248,41 @@ public class FacultyController {
 			return new ResponseEntity<>(new ApiResponse(e.getMessage()), HttpStatus.NOT_FOUND);
 		}
 	}
+
+	@DeleteMapping("/viewassignment/delete/{id}")
+	public ResponseEntity<?> deleteAssignmentDetails(@PathVariable Long id) {
+		System.out.println("in del Assignment" + id);
+		try {
+			return ResponseEntity.ok(new ApiResponse(facultyService.deleteAssignmentById(id)));
+		} catch (RuntimeException e) {
+			System.out.println("err in del  Assignment " + e);
+			return new ResponseEntity<>(new ApiResponse("Invalid Assignment ID !!!!!!!!!!!!!!!!"),
+					HttpStatus.NOT_FOUND);
+		}
+	}
+
+	@GetMapping("/editassignment/{id}")
+	public ResponseEntity<?> getAssignmentByAssignmentId(@PathVariable Long id) {
+		Assignment a = facultyService.getAssignmentById(id);
+		HashMap<String, Object> ht = new HashMap<String, Object>();
+		if (a == null)
+			return new ResponseEntity<>(new ApiResponse("Invalid Assignment ID !!!!!!!!!!!!!!!!"),
+					HttpStatus.NOT_FOUND);
+		ht.put("status", new String("success"));
+		ht.put("data", a);
+		return ResponseEntity.ok(ht);
+	}
+
+	@PutMapping("/editassignment/{id}")
+	public ResponseEntity<?> updateAssignmentDetails(@RequestBody Assignment detachedAssignment,
+			@PathVariable Long id) {
+
+		System.out.println("in update TimeTable" + detachedAssignment.getId());
+		try {
+			return ResponseEntity.ok(facultyService.updateAssignmentDetails(detachedAssignment, id));
+		} catch (RuntimeException e) {
+			System.out.println("err in update  Assignment " + e);
+			return new ResponseEntity<>(new ApiResponse(e.getMessage()), HttpStatus.NOT_FOUND);
+		}
+	}
 }

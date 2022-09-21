@@ -4,6 +4,19 @@ import { useEffect ,useState} from 'react';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 function Result() {
+  const navigate =useNavigate();
+  useEffect(() => {   
+    console.log(sessionStorage.getItem("userName"))
+      if(sessionStorage.getItem("userName")===null){
+         navigate("/");
+      }
+      if(sessionStorage.getItem("userRole")==="ROLE_ADMIN"){
+        navigate("/admin")
+      }
+      if(sessionStorage.getItem("userRole")==="ROLE_FACULTY"){
+        navigate("/faculty")
+      }
+  });
     const [data, setData] = useState({results: [], isFetching: false});
     const [searchText, setSearchText] = useState('')
     const handleSearchText = (e) => {
@@ -37,14 +50,14 @@ function Result() {
     {/* <h5>{state.user.data.name}</h5> */}
     <div className='cotainer-fluid'>
 <div className="row justify-content-around align-items-center" style={{height :"98vh" , marginTop:0}}>
-<div className="col-8 p-5 shadow bg-white">
-   <center><span><h1>Assignment Results</h1></span></center>
-   <div className='ui icon input'>
-              <input type='text' placeholder='Enter faculty name or module name' className='prompt' name="searchText" onChange={handleSearchText} value= {searchText}></input>
-              <button ><i class="bi bi-search"></i></button>
+<div className="col-8 p-5 shadow bg-white rounded">
+   <center><span className='fs-2 fw-bolder'><h2>Assignment Results</h2></span></center>
+   <div className='ui search'>
+            <div className='ui icon input' style={{marginLeft:"33rem"}} >
+              <input type='text' placeholder='Enter faculty or module name' className='prompt col-9 rounded border-dark form-control col-10' name="searchText" onChange={handleSearchText} value= {searchText} style={{height:"3rem"}}></input>
             </div>
             <br></br>
-    <br></br>
+            </div>
    <table className="table table-striped table-secondary">
          <thead className='table-dark'>
           <tr>

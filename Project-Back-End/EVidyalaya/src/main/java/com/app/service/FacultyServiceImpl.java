@@ -1,12 +1,10 @@
 package com.app.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.kafka.KafkaProperties.Jaas;
 import org.springframework.stereotype.Service;
 
 import com.app.custom_exceptions.ResourceNotFoundException;
@@ -310,4 +308,31 @@ public class FacultyServiceImpl implements IFacultyService {
 		return aa;
 	}
 
+	@Override
+	public String deleteAssignmentById(Long id) {
+
+		Assignment assignment = assignRepo.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("Invalid Assignment ID !!!!!!!"));
+		assignRepo.delete(assignment);
+
+		return "Assignment Deleted Succesfully ";
+	}
+
+	@Override
+	public Assignment getAssignmentById(Long id) {
+
+		Assignment assignment = assignRepo.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("Invalid Assignment ID !!!!!!!"));
+		return assignment;
+	}
+
+	@Override
+	public Assignment updateAssignmentDetails(Assignment detachedAssignment, Long id) {
+		Assignment assignment = assignRepo.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("Invalid Assignment ID !!!!!!!"));
+		assignment.setDescription(detachedAssignment.getDescription());
+		assignment.setModuleName(detachedAssignment.getModuleName());
+		assignRepo.save(assignment);
+		return assignment;
+	}
 }

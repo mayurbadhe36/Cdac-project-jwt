@@ -1,9 +1,22 @@
 import FacultyNavBar from './FacultyNavBar';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import {useNavigate} from 'react-router-dom';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function AddTimeTable() {
+  useEffect(() => {  
+    if(sessionStorage.getItem("userName")===null){
+       navigate("/");
+    }
+    if(sessionStorage.getItem("userRole")==="ROLE_ADMIN"){
+      navigate("/admin")
+    }
+    if(sessionStorage.getItem("userRole")==="ROLE_STUDENT"){
+      navigate("/student")
+    }
+});
   const config = {
     headers: {
       Authorization: `Bearer ${sessionStorage.getItem("jwtToken")}`,
@@ -21,6 +34,7 @@ function AddTimeTable() {
       platform:"",
       link:""
   })
+
   function submit(e){
       e.preventDefault();
       axios.post(url,{
@@ -34,9 +48,16 @@ function AddTimeTable() {
       },config).then(res=>
           console.log(res.data)
           )  
-          alert("TimeTable Added Successfully!!")
           navigate('/faculty')
-          navigate('/faculty')
+          toast.success('TimeTable Added Succesfully!!!', {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            });
   }
   function handle(e){
       const newData={...data}
@@ -51,8 +72,9 @@ function AddTimeTable() {
         <FacultyNavBar/>
         <div className='cotainer-fluid'>
        <div className="row justify-content-around align-items-center" style={{height :"98vh" , marginTop:0}}>
-       <div className="col-4 p-5 shadow bg-white">
-            <span className='fs-3 mb-3'><center>Add TimeTable</center></span>
+       <div className="col-4 p-5 shadow bg-white rounded">
+            <span className='fs-3 mb-3 fw-bolder'><center><h2>Add Timetable</h2></center></span>
+            <br></br>
             <form onSubmit={submit}>
           {/* <div className='mb-3'>
            <lable>Faculty Name</lable><br></br>

@@ -5,6 +5,17 @@ import { useEffect ,useState} from 'react';
 import axios from 'axios';
 
 function AdminViewFaculty() {
+  useEffect(() => {  
+    if(sessionStorage.getItem("userName")===null){
+       navigate("/");
+    }
+    if(sessionStorage.getItem("userRole")==="ROLE_FACULTY"){
+      navigate("/faculty")
+    }
+    if(sessionStorage.getItem("userRole")==="ROLE_STUDENT"){
+      navigate("/student")
+    }
+});
   const [data, setData] = useState({faculties: [], isFetching: false});
   const [searchText, setSearchText] = useState('')
 
@@ -58,17 +69,17 @@ function AdminViewFaculty() {
           <AdminNavBar></AdminNavBar>
       <div className='cotainer-fluid'>
        <div className="row justify-content-around align-items-center" style={{height :"98vh" , marginTop:0}}>
-       <div className="col-8 p-5 shadow bg-white">
-           <center><span><h1>View Faculty Details </h1></span></center>
+       <div className=" col-8 p-5 shadow mb-5 bg-white rounded">
+           <center><span style={{fontFamily:"unset"}}><h2>View Faculty Details </h2></span></center>
            <div className='ui search'>
-            <div className='ui icon input'>
-              <input type='text' placeholder='Enter name or email' className='prompt' name="searchText" onChange={handleSearchText} value= {searchText}></input>
-              <button ><i class="bi bi-search"></i></button>
+            <div className='ui icon input' style={{marginLeft:"33rem"}} >
+              <input type='text' placeholder='Enter name or email' className='prompt col-9 rounded border-dark form-control col-10' name="searchText" onChange={handleSearchText} value= {searchText} style={{height:"3rem"}}></input>
+             
             </div>
             <br></br>
             </div>
-           <table className="table table-striped table-secondary">
-                 <thead className='table-dark'>
+           <table className="table table-striped table-secondary table-hover">
+                 <thead className='table-dark '>
                    <tr>
                 <th>Sr No.</th>
                 <th>Faculty Name</th>
@@ -110,9 +121,9 @@ function AdminViewFaculty() {
                 {address}
               </td>
            <td>
-              <button className="button muted-button" onClick={()=>navigate(`/admin/editfaculty/${id}`)}>Edit</button>
-              {/* <button className="button muted-button" onClick={() => removeFaculty({id})}>Delete</button> */}
-              <button className="button muted-button" onClick={() => removeFaculty(id)}>Delete</button>
+              <button className="button border-white" onClick={()=>navigate(`/admin/editfaculty/${id}`)}><i className="bi bi-pencil-square"></i></button>
+                &nbsp;
+              <button className="button border-white" onClick={() => removeFaculty(id)} ><i className="bi bi-trash3-fill"></i></button>
             </td>
           </tr>
           )}

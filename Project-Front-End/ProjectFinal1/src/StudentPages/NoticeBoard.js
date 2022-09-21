@@ -2,7 +2,22 @@ import StudentNavBar from "./StudentNavBar"
 import React from 'react';
 import { useEffect ,useState} from 'react';
 import axios from 'axios';
+import { useNavigate } from "react-router-dom";
+
 function NoticeBoard() {
+   const navigate =useNavigate();
+  useEffect(() => {   
+    console.log(sessionStorage.getItem("userName"))
+      if(sessionStorage.getItem("userName")===null){
+         navigate("/");
+      }
+      if(sessionStorage.getItem("userRole")==="ROLE_ADMIN"){
+        navigate("/admin")
+      }
+      if(sessionStorage.getItem("userRole")==="ROLE_FACULTY"){
+        navigate("/faculty")
+      }
+  });
    const [data, setData] = useState({noticeboards: [], isFetching: false});
    const [searchText, setSearchText] = useState('')
 
@@ -33,16 +48,17 @@ function NoticeBoard() {
     return (
           <div>
             <StudentNavBar/>
-            <div className='cotainer-fluid'>
+            <div className='cotainer-fluid' style={{overflow:"auto"}}>
     <div className="row justify-content-around align-items-center" style={{height :"98vh" , marginTop:-25}}>
     
-    <div className="col-8 p-5 shadow" style={{backgroundColor : 'white'}}>
-    <center><span><h1>View NoticeBoard</h1></span></center>
-    <div className='ui icon input'>
-              <input type='text' placeholder='Enter faculty name or module name' className='prompt' name="searchText" onChange={handleSearchText} value= {searchText}></input>
-              <button ><i class="bi bi-search"></i></button>
+    <div className="col-8 p-5 shadow rounded" style={{backgroundColor : 'white'}}>
+    <center><span className="fs-2 fw-bolder"><h2>View Noticeboard</h2></span></center>
+    <div className='ui search'>
+            <div className='ui icon input' style={{marginLeft:"33rem"}} >
+              <input type='text' placeholder='Enter faculty or module name' className='prompt col-9 rounded border-dark form-control col-10' name="searchText" onChange={handleSearchText} value= {searchText} style={{height:"3rem"}}></input>
             </div>
             <br></br>
+            </div>
             {
              data.noticeboards.filter((val)=>{
               if(searchText==""){
@@ -52,26 +68,26 @@ function NoticeBoard() {
             }
              })
             .map(({description,date,facultyName,moduleName})=>
-             <table className="table border table-striped table-secondary" style={{cellspacing:'5'}}>
+             <table className="table border table-striped table-secondary table-hover" style={{cellspacing:'5'}}>
                <tr>
                   <td>
-                    Description :  {description}
+                    <span className="fw-bolder">Description : </span> {description}
                   </td>
                   </tr>
                   <tr>
                   <td>
-                     Publish Date : {date}
+                    <span className="fw-bolder"> Publish Date :</span> {date}
                      
                   </td>
                   </tr>
                   <tr>
                   <td>
-                     Faculty Name : {facultyName}
+                     <span className="fw-bolder">Faculty Name :</span> {facultyName}
                   </td>
                   </tr>
                   <tr>
                   <td>
-                     Module Name : {moduleName}
+                    <span className="fw-bolder"> Module Name : </span>{moduleName}
                   </td>
                   </tr>
              </table>

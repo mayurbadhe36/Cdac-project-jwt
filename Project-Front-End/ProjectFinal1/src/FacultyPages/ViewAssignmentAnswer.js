@@ -4,7 +4,18 @@ import { useEffect ,useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import axios from 'axios';
 function ViewAssignmentAnswer() {
-
+  
+  useEffect(() => {  
+    if(sessionStorage.getItem("userName")===null){
+       navigate("/");
+    }
+    if(sessionStorage.getItem("userRole")==="ROLE_ADMIN"){
+      navigate("/admin")
+    }
+    if(sessionStorage.getItem("userRole")==="ROLE_STUDENT"){
+      navigate("/student")
+    }
+});
   const [data, setData] = useState({answers: [], isFetching: false});
   const [searchText, setSearchText] = useState('')
   const[remark,setRemark]=useState('');
@@ -110,14 +121,15 @@ function handleDownload(file){
       <FacultyNavBar/>
       <div className='cotainer-fluid'>
        <div className="row justify-content-around align-items-center" style={{height :"98vh" , marginTop:0}}>
-       <div className="col-8 p-5 shadow bg-white">
-           <center><span><h1>View Assignment Answers</h1></span></center>
-           <div className='ui icon input'>
-              <input type='text' placeholder='Enter Module or student name' className='prompt' name="searchText" onChange={handleSearchText} value= {searchText}></input>
-              <button ><i class="bi bi-search"></i></button>
+       <div className="col-8 p-5 shadow bg-white rounded">
+           <center><span className='fw-bolder fs-2'><h2>View Assignment Answers</h2></span></center>
+           <div className='ui search'>
+            <div className='ui icon input' style={{marginLeft:"33rem"}} >
+              <input type='text' placeholder='Enter module or student name' className='prompt col-9 rounded border-dark form-control col-10' name="searchText" onChange={handleSearchText} value= {searchText} style={{height:"3rem"}}></input>
             </div>
             <br></br>
-           <table className="table table-striped table-secondary">
+            </div>
+           <table className="table table-striped table-secondary table-hover">
                  <thead className='table-dark'>
                 <tr>
                     <th>Sr No.</th>
@@ -125,6 +137,7 @@ function handleDownload(file){
                     <th>Student Name</th>
                     <th>Download</th>
                     <th>Action</th>
+                    
                 </tr>
             </thead>
             <tbody>

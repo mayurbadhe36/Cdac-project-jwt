@@ -6,6 +6,18 @@ import axios from 'axios';
 
 function EditFaculty() {
   const navigate = useNavigate();
+  
+  useEffect(() => {  
+    if(sessionStorage.getItem("userName")===null){
+       navigate("/");
+    }
+    if(sessionStorage.getItem("userRole")==="ROLE_FACULTY"){
+      navigate("/faculty")
+    }
+    if(sessionStorage.getItem("userRole")==="ROLE_STUDENT"){
+      navigate("/student")
+    }
+});
   const param = useParams();
   const facultyId=param.id;
   const updateurl=`http://localhost:8080/admin/editfaculty/${param.id}`;
@@ -82,8 +94,8 @@ function EditFaculty() {
           <AdminNavBar></AdminNavBar>
         <div className='cotainer-fluid'>
        <div className="row justify-content-around align-items-center" style={{height :"98vh" , marginTop:0}}>
-       <div className="col-4 p-5 shadow bg-white">
-            <span className='fs-3 mb-3'><center>Edit Faculty</center></span>
+       <div className="col-4 p-5 shadow bg-white rounded">
+            <span className='fs-3 mb-3 fw-bolder'><center><h1>Edit Faculty</h1></center></span>
 
             <form onSubmit={(e)=>submit(e)}>
           <div className='mb-3'>

@@ -1,11 +1,25 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import FacultyNavBar from './FacultyNavBar';
 import './Faculty'; 
 import{ useState } from 'react'
 import axios from 'axios';
 import {useNavigate} from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 function AddNoticeBoard() {
+
+  useEffect(() => {  
+    if(sessionStorage.getItem("userName")===null){
+       navigate("/");
+    }
+    if(sessionStorage.getItem("userRole")==="ROLE_ADMIN"){
+      navigate("/admin")
+    }
+    if(sessionStorage.getItem("userRole")==="ROLE_STUDENT"){
+      navigate("/student")
+    }
+});
+
   const id=sessionStorage.getItem("userId");
   const url=`http://localhost:8080/faculty/addnoticeboard/${id}`
   const config = {
@@ -13,6 +27,7 @@ function AddNoticeBoard() {
       Authorization: `Bearer ${sessionStorage.getItem("jwtToken")}`,
     },
   };
+
   const navigate = useNavigate();
   const[data,setData]=useState({
       facultyName:"",
@@ -20,6 +35,8 @@ function AddNoticeBoard() {
       description:"",
       moduleName:""
   })
+
+
   function submit(e){
       e.preventDefault();
       axios.post(url,{
@@ -30,9 +47,17 @@ function AddNoticeBoard() {
       },config).then(res=>
           console.log(res.data)
           )  
-          alert("Notice Added Successfully!!")
           navigate('/faculty')
-          navigate('/faculty')
+          toast.success('TimeTable Added Succesfully!!!', {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            });
+
   }
   function handle(e){
       const newData={...data}
@@ -46,14 +71,10 @@ function AddNoticeBoard() {
         <FacultyNavBar/>
         <div className='cotainer-fluid'>
        <div className="row justify-content-around align-items-center" style={{height :"98vh" , marginTop:0}}>
-       <div className="col-4 p-5 shadow bg-white">
-            <span className='fs-3 mb-3'><center>Add NoticeBoard</center></span>
-
+       <div className="col-4 p-5 shadow bg-white rounded">
+            <span className='fs-3 mb-3 fw-bolder'><center><h2>Add Noticeboard</h2></center></span>
+              <br></br>
             <form onSubmit={submit}>
-          {/* <div className='mb-3'>
-           <label>Faculty Name</label><br></br>
-            <input type='text' placeholder='Enter Faculty Name'className='form-control' onChange={(e)=>handle(e)} id='facultyName' value={data.value}></input>
-           </div> */}
            <div className='mb-3'>
              <label>Module Name</label>
              <input type ='text' className='form-control' placeholder='Enter Module Name' onChange={(e)=>handle(e)} id='moduleName' value={data.value}></input>

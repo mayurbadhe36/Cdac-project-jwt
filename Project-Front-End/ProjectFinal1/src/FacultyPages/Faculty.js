@@ -1,18 +1,43 @@
 import './Faculty.css';
-import React from 'react'
+import React, { useEffect } from 'react'
 import FacultyNavBar from './FacultyNavBar'
-import {NavLink} from 'react-router-dom';
+import {NavLink, useNavigate} from 'react-router-dom';
+import { ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+function Faculty() {
+  const navigate =useNavigate();
+  useEffect(() => {  
+      if(sessionStorage.getItem("userName")===null){
+         navigate("/");
+      }
+      if(sessionStorage.getItem("userRole")==="ROLE_ADMIN"){
+        navigate("/admin")
+      }
+      if(sessionStorage.getItem("userRole")==="ROLE_STUDENT"){
+        navigate("/student")
+      }
+  });
 
-function Faculty
-() {
   return (
     <div>
-      <FacultyNavBar/>
+      <FacultyNavBar/>   
+      <ToastContainer
+          position="top-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          />
       <div className='cotainer-fluid'>
     <div className="row justify-content-around align-items-center" style={{height :"98vh" , marginTop:-50}}>
     
-    <div className="col-10 p-5 shadow bg-white" >
-    <center><span className='fw-light fs-1'>Faculty DashBoard</span></center>
+    <div className="col-10 p-5 shadow bg-white rounded" >
+    <center><span className='fw-bolder fs-1'><h3>Faculty Dashboard</h3></span></center>
+    <br></br>
       <table  style={{marginLeft:40 , marginTop:20}}>
           <tr>
             <td className='px-3 ' >

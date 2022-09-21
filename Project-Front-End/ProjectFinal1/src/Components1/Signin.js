@@ -6,7 +6,6 @@ import NavBar from './NavBar';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-
 function  Signin(){
     const navigate = useNavigate()
     const [email, setEmail] = useState('')
@@ -69,17 +68,17 @@ function  Signin(){
         return(
               <div>
                      <NavBar></NavBar>
-                     <ToastContainer
-position="top-center"
-autoClose={5000}
-hideProgressBar={false}
-newestOnTop={false}
-closeOnClick
-rtl={false}
-pauseOnFocusLoss
-draggable
-pauseOnHover
-/>
+              <ToastContainer
+              position="top-center"
+              autoClose={5000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+                   />
             <div className="container-fluid">
             <div className="row justify-content-around align-items-center" style={{height :"98vh"}}>
                     <div className="col-4 p-5 shadow">

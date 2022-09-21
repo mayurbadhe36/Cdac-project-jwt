@@ -4,7 +4,22 @@ import FacultyNavBar from './FacultyNavBar'
 import { useEffect ,useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import axios from 'axios';
+
 function ViewTimeTable() {
+  
+  useEffect(() => {  
+    console.log(sessionStorage.getItem("userName"))
+      if(sessionStorage.getItem("userName")===null){
+         navigate("/");
+      }
+      if(sessionStorage.getItem("userRole")==="ROLE_ADMIN"){
+        navigate("/admin")
+      }
+      if(sessionStorage.getItem("userRole")==="ROLE_STUDENT"){
+        navigate("/student")
+      }
+  });
+
   const [data, setData] = useState({timetables: [], isFetching: false});
   const [searchText, setSearchText] = useState('')
 
@@ -53,17 +68,17 @@ function ViewTimeTable() {
 
   return(
     <div> <FacultyNavBar/>
-    <div className='cotainer-fluid'>
+    <div className='cotainer-fluid' style={{overflow:"auto"}}>
     <div className="row justify-content-around align-items-center" style={{height :"98vh" , marginTop:0}}>
-    <div className="col-8 p-5 shadow bg-white">
-        <center><span><h1>View TimeTable Details</h1></span></center>
-        <div className='ui icon input'>
-              <input type='text' placeholder='Enter Module Name' className='prompt' name="searchText" onChange={handleSearchText} value= {searchText}></input>
-              <button ><i class="bi bi-search"></i></button>
+    <div className="col-8 p-5 shadow bg-white rounded">
+        <center><span className='fs-2 fw-bolder'><h2>View TimeTable Details</h2></span></center>
+        <div className='ui search'>
+            <div className='ui icon input' style={{marginLeft:"33rem"}} >
+              <input type='text' placeholder='Enter module name' className='prompt col-9 rounded border-dark form-control col-10' name="searchText" onChange={handleSearchText} value= {searchText} style={{height:"3rem"}}></input>
             </div>
             <br></br>
-            <br></br>
-        <table className="table table-striped table-secondary">
+            </div>
+        <table className="table table-striped table-secondary table-hover">
               <thead className='table-dark'>
                   <tr>
                       <th>Sr No.</th>
@@ -109,9 +124,9 @@ function ViewTimeTable() {
                 {link}
               </td>
               <td>
-              <button className="button muted-button" onClick={()=>navigate(`/faculty/edittimetable/${id}`)}>Edit</button>
+              <button className="button border-white" onClick={()=>navigate(`/faculty/edittimetable/${id}`)}><i className="bi bi-pencil-square"></i></button>
               {/* <button className="button muted-button" onClick={() => removeFaculty({id})}>Delete</button> */}
-              <button className="button muted-button" onClick={() => removeTimeTable(id)}>Delete</button>
+              <button className="button border-white" onClick={() => removeTimeTable(id)}><i className="bi bi-trash3-fill"></i></button>
             </td>
              </tr>
              )}

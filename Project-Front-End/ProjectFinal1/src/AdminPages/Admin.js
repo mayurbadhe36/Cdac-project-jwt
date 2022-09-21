@@ -1,20 +1,30 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import AdminNavBar from './AdminNavBar'
-import {NavLink} from 'react-router-dom';
+import {NavLink, useNavigate} from 'react-router-dom';
 
 function Admin() {
+   const navigate=useNavigate();
+  useEffect(() => {  
+    if(sessionStorage.getItem("userName")===null){
+       navigate("/");
+    }
+    if(sessionStorage.getItem("userRole")==="ROLE_FACULTY"){
+      navigate("/faculty")
+    }
+    if(sessionStorage.getItem("userRole")==="ROLE_STUDENT"){
+      navigate("/student")
+    }
+});
+
   return (
-    
-  
     <div>
           <AdminNavBar></AdminNavBar>
-        
         {/* <h5>{state.user.data.name}</h5> */}
         <div className='cotainer-fluid'>
     <div className="row justify-content-around align-items-center" style={{height :"98vh" , marginTop:-50}}>
     
-    <div className="col-6 p-5 shadow bg-white" >
-    <center><span className='fw-light fs-1'>Admin DashBoard</span></center>
+    <div className="col-6 p-5 shadow bg-white rounded" >
+    <span className='fs-3 mb-3 fw-bolder' style={{fontFamily:"unset"}}><center><h3>Admin Dashboard</h3></center></span>
       <table  style={{marginLeft:40 , marginTop:20}}>
           <tr>
             <td className='p-1 px-5 ' >

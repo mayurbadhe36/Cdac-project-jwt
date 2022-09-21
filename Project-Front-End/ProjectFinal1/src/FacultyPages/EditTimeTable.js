@@ -6,6 +6,18 @@ import axios from 'axios';
 
 function EditTimeTable() {
   const navigate = useNavigate();
+  useEffect(() => {  
+    if(sessionStorage.getItem("userName")===null){
+       navigate("/");
+    }
+    if(sessionStorage.getItem("userRole")==="ROLE_ADMIN"){
+      navigate("/admin")
+    }
+    if(sessionStorage.getItem("userRole")==="ROLE_STUDENT"){
+      navigate("/student")
+    }
+});
+
   const param = useParams();
 const timeId=param.id;
   const updateurl=`http://localhost:8080/faculty/edittimetable/${param.id}`;
@@ -83,18 +95,13 @@ const timeId=param.id;
      <FacultyNavBar/>
      <div className='cotainer-fluid'>
     <div className="row justify-content-around align-items-center" style={{height :"98vh" , marginTop:0}}>
-    <div className="col-4 p-5 shadow bg-white">
-         <span className='fs-3 mb-3'><center>Edit TimeTable</center></span>
+    <div className="col-4 p-5 shadow bg-white rounded">
+         <span className='fs-3 mb-3 fw-bolder'><center><h3>Edit Timetable</h3></center></span>
          <form onSubmit={submit}>
         <div className='mb-3'>
           <label>Date</label>
           <input type ='date' className='form-control' placeholder='Enter date' onChange={handleDate} value={date} name="date"></input>
         </div>
-
-        {/* <div className='mb-3'>
-          <label>Description</label><br></br>
-          <textarea className='col-100  form-control' onChange={handleModuleName} value={moduleName} name="moduleName"> </textarea>
-        </div> */}
         <div className='mb-3'>
            <label>Start Time: </label>
            <input type='time' className='col-3' onChange={handleStartTime} value={startTime} name="startTime"></input>

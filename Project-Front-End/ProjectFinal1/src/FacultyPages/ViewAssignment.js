@@ -2,8 +2,23 @@ import React from 'react'
 import FacultyNavBar from './FacultyNavBar'
 import { useEffect ,useState} from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function ViewAssignment() {
+  const navigate =useNavigate();
+  useEffect(() => {  
+    if(sessionStorage.getItem("userName")===null){
+       navigate("/");
+    }
+    if(sessionStorage.getItem("userRole")==="ROLE_ADMIN"){
+      navigate("/admin")
+    }
+    if(sessionStorage.getItem("userRole")==="ROLE_STUDENT"){
+      navigate("/student")
+    }
+});
   const [searchText, setSearchText] = useState('')
 
   const handleSearchText = (e) => {
@@ -34,19 +49,57 @@ function ViewAssignment() {
       };
       fetchassignments();
   }, []);
+  const removeAssignment =(id) => {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${sessionStorage.getItem("jwtToken")}`,
+      },
+    };
+    axios.delete(`http://localhost:8080/faculty/viewassignment/delete/${id}`,config).then((response) => {
+      
+    toast.success('Assignment Deleted Succesfully', {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        });
+         
+   // alert("NoticeBoard record with Id " + id + " deleted!");
+     // navigate('/faculty/viewnoticeboard')
+      navigate('/faculty/viewassignment')
+    }).catch(error => {
+      alert("Error Ocurred in remove Noticeboard :" + error);
+    });
+  
+  }
   return(
     <div>
       <FacultyNavBar/>
+      <ToastContainer
+          position="top-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+/>
       <div className='container-fluid'>
        <div className="row justify-content-around align-items-center" style={{height :"98vh" , marginTop:0}}>
-       <div className="col-8 p-5 shadow bg-white">
-           <center><span><h1>View Assignment </h1></span></center>
-           <div className='ui icon input'>
-              <input type='text' placeholder='Enter module name' className='prompt' name="searchText" onChange={handleSearchText} value= {searchText}></input>
-              <button ><i class="bi bi-search"></i></button>
+       <div className="col-8 p-5 shadow bg-white rounded">
+           <center><span className='fw-bolder fs-3'><h2>View Assignment </h2></span></center>
+           <div className='ui search'>
+            <div className='ui icon input' style={{marginLeft:"33rem"}} >
+              <input type='text' placeholder='Enter name or email' className='prompt col-9 rounded border-dark form-control col-10' name="searchText" onChange={handleSearchText} value= {searchText} style={{height:"3rem"}}></input>
             </div>
             <br></br>
-           <table className="table table-striped table-secondary">
+            </div>
+           <table className="table table-striped table-secondary table-hover">
                  <thead className='table-dark'>
                    <tr>
                 <th>Sr No.</th>
@@ -70,8 +123,8 @@ function ViewAssignment() {
           <td>{moduleName}</td>
           <td>{description}</td>
           <td>
-              <button className="button muted-button">Edit</button>
-              <button className="button muted-button">Delete</button>        
+              <button className="button border-white" onClick={()=>navigate(`/faculty/editassignment/${id}`)}><i className="bi bi-pencil-square"></i></button>
+              <button className="button border-white" onClick={() => removeAssignment(id)}><i className="bi bi-trash3-fill"></i></button>        
             </td>
          </tr>)}
         </tbody>

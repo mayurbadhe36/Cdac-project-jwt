@@ -2,10 +2,24 @@ import React from 'react'
 import FacultyNavBar from './FacultyNavBar'
 import { useEffect ,useState} from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 function ViewStudent() {
-  const [searchText, setSearchText] = useState('')
+  
+  const navigate =useNavigate();
+  useEffect(() => {  
+      if(sessionStorage.getItem("userName")===null){
+         navigate("/");
+      }
+      if(sessionStorage.getItem("userRole")==="ROLE_ADMIN"){
+        navigate("/admin")
+      }
+      if(sessionStorage.getItem("userRole")==="ROLE_STUDENT"){
+        navigate("/student")
+      }
+  });
 
+  const [searchText, setSearchText] = useState('')
   const handleSearchText = (e) => {
     setSearchText(e.target.value)
     console.log(searchText);
@@ -37,19 +51,18 @@ function ViewStudent() {
     <div>
     <FacultyNavBar/>
    
-    <div className='cotainer-fluid'>
+    <div className='cotainer-fluid' style={{overflow:"auto"}}>
     <div className="row justify-content-around align-items-center" style={{height :"98vh" , marginTop:0}}>
-    <div className="col-8 p-5 shadow bg-white">
-        <center><span><h1>View Student Details</h1></span></center>
-          <div className='ui search'>
-            <div className='ui icon input'>
-              <input type='text' placeholder='Enter name or gmail' className='prompt' name="searchText" onChange={handleSearchText} value= {searchText}></input>
-              <button ><i class="bi bi-search"></i></button>
+    <div className="col-8 p-5 shadow bg-white rounded">
+        <center><span className='fs-2 fw-bolder'><h2>View Student Details</h2></span></center>
+        <div className='ui search'>
+            <div className='ui icon input' style={{marginLeft:"33rem"}} >
+              <input type='text' placeholder='Enter name or email' className='prompt col-9 rounded border-dark form-control col-10' name="searchText" onChange={handleSearchText} value= {searchText} style={{height:"3rem"}}></input>
             </div>
             <br></br>
-          </div>
+            </div>
         <div className='contain-table'>
-            <table className='table table-striped table-secondary'>
+            <table className='table table-striped table-secondary table-hover'>
                 <thead className='table-dark'>
                     <tr>
                         <th>Sr No.</th>

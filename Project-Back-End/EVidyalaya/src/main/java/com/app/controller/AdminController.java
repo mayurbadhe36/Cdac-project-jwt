@@ -4,8 +4,11 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,8 +31,13 @@ public class AdminController {
 	@Autowired
 	IAdminService adminService;
 
+	@Autowired
+	private PasswordEncoder passwordEncode;
+
 	@PostMapping("/addfaculty")
 	public ResponseEntity<?> addFaculty(@RequestBody User u) {
+
+		u.setPassword(passwordEncode.encode(u.getPassword()));
 		try {
 			return new ResponseEntity<>(adminService.addFaculty(u), HttpStatus.CREATED);
 		} catch (RuntimeException e) {
@@ -45,6 +53,7 @@ public class AdminController {
 
 	@PostMapping("/addstudent")
 	public ResponseEntity<?> addStudent(@RequestBody User u) {
+		u.setPassword(passwordEncode.encode(u.getPassword()));
 		try {
 			return new ResponseEntity<>(adminService.addStudent(u), HttpStatus.CREATED);
 		} catch (RuntimeException e) {

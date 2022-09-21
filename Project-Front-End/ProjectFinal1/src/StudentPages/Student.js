@@ -2,11 +2,22 @@ import './Student.css';
 import React from 'react';
 //import { useLocation } from 'react-router-dom';
 import StudentNavBar from './StudentNavBar';
-import {NavLink} from 'react-router-dom';
-
-
+import {NavLink,useNavigate} from 'react-router-dom';
+import { useEffect } from 'react'
 function Student() {
-
+  const navigate= useNavigate();
+    useEffect(() => {   
+      console.log(sessionStorage.getItem("userName"))
+        if(sessionStorage.getItem("userName")===null){
+           navigate("/");
+        }
+        if(sessionStorage.getItem("userRole")==="ROLE_ADMIN"){
+          navigate("/admin")
+        }
+        if(sessionStorage.getItem("userRole")==="ROLE_FACULTY"){
+          navigate("/faculty")
+        }
+    });
   return (
         <div>
           <StudentNavBar/>
@@ -15,7 +26,8 @@ function Student() {
     <div className="row justify-content-around align-items-center" style={{height :"98vh" , marginTop:-50}}>
     
     <div className="col-8 p-5 shadow bg-white" >
-    <center><span className='fw-light fs-1'>Student DashBoard</span></center>
+    <center><span className='fw-bolder fs-2'><h2>Student Dashboard</h2></span></center>
+    <br></br>
       <table  style={{marginLeft:40 , marginTop:20}}>
           <tr>
             <td className='p-1 px-5 ' >

@@ -5,8 +5,21 @@ import {useNavigate} from 'react-router-dom';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import './Noticeboard.css';
 
 function ViewNoticeBoard () {
+  useEffect(() => {  
+      if(sessionStorage.getItem("userName")===null){
+         navigate("/");
+      }
+      if(sessionStorage.getItem("userRole")==="ROLE_ADMIN"){
+        navigate("/admin")
+      }
+      if(sessionStorage.getItem("userRole")==="ROLE_STUDENT"){
+        navigate("/student")
+      }
+  });
+
   const [data, setData] = useState({noticeboards: [], isFetching: false});
   const [searchText, setSearchText] = useState('')
 
@@ -43,8 +56,8 @@ const removeNoticeBoard =(id) => {
     },
   };
   axios.delete(`http://localhost:8080/faculty/viewnoticeboard/delete/${id}`,config).then((response) => {
-    
-  toast.success('noticeboard edited Succesfully', {
+
+  toast.success('noticeboard Deleted Succesfully', {
       position: "top-center",
       autoClose: 5000,
       hideProgressBar: false,
@@ -66,37 +79,38 @@ const removeNoticeBoard =(id) => {
     <div>
         <FacultyNavBar/>
         <ToastContainer
-position="top-center"
-autoClose={5000}
-hideProgressBar={false}
-newestOnTop={false}
-closeOnClick
-rtl={false}
-pauseOnFocusLoss
-draggable
-pauseOnHover
+          position="top-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
 />
-        <div className='cotainer-fluid'>
+        <div className='cotainer-fluid' style={{overflow:"auto"}}>
     <div className="row justify-content-around align-items-center" style={{height :"98vh" , marginTop:0}}>
-    <div className="col-8 p-5 shadow bg-white">
-        <center><span><h1>Notice Board</h1></span></center>
-        <div className='ui icon input'>
-              <input type='text' placeholder='Enter Module Name' className='prompt' name="searchText" onChange={handleSearchText} value= {searchText}></input>
-              <button ><i class="bi bi-search"></i></button>
+    <div className="col-8 p-5 shadow bg-white rounded">
+        <center><span className='fs-2 fw-bolder'><h2>Notice Board</h2></span></center>
+        <div className='ui search'>
+            <div className='ui icon input' style={{marginLeft:"33rem"}} >
+              <input type='text' placeholder='Enter module name' className='prompt col-9 rounded border-dark form-control col-10' name="searchText" onChange={handleSearchText} value= {searchText} style={{height:"3rem"}}></input>
             </div>
             <br></br>
-            <br></br>
-        <table className="table table-striped table-secondary">
+            </div>
+            <div style={{overflow:"auto"}}>
+        <table className="table table-striped table-secondary table-hover">
                  <thead className='table-dark'>
                  <tr>
                       <th>Id</th>
                       <th>Module Name</th>
                       <th>Date</th>
-                      <th>Description</th>
+                      <th> Description</th>                      
                       <th>Action</th>
                   </tr>
               </thead>
-              <tbody>
+              <tbody style={{overflow:"auto"}}>
               {
              data.noticeboards.filter((val)=>{
               if(searchText==""){
@@ -120,15 +134,16 @@ pauseOnHover
                   <td>
                     {description}
                   </td>
+                 
                   <td>
-              <button className="button muted-button" onClick={()=>navigate(`/faculty/editnoticeboard/${id}`)}>Edit</button>
-              {/* <button className="button muted-button" onClick={() => removeFaculty({id})}>Delete</button> */}
-              <button className="button muted-button" onClick={() => removeNoticeBoard(id)}>Delete</button>
+              <button className="button border-white" onClick={()=>navigate(`/faculty/editnoticeboard/${id}`)}><i className="bi bi-pencil-square"></i></button>
+              <button className="button border-white" onClick={() => removeNoticeBoard(id)}><i className="bi bi-trash3-fill"></i></button>
             </td>
                 </tr>)}
               </tbody>
               
-          </table>  
+          </table> 
+          </div> 
         </div>
         </div>
         </div>

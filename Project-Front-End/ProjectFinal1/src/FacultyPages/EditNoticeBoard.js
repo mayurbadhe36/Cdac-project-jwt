@@ -8,6 +8,17 @@ import 'react-toastify/dist/ReactToastify.css';
 
 function EditNoticeBoard() {
   const navigate = useNavigate();
+  useEffect(() => {  
+    if(sessionStorage.getItem("userName")===null){
+       navigate("/");
+    }
+    if(sessionStorage.getItem("userRole")==="ROLE_ADMIN"){
+      navigate("/admin")
+    }
+    if(sessionStorage.getItem("userRole")==="ROLE_STUDENT"){
+      navigate("/student")
+    }
+});
   const param = useParams();
 const noticeId =param.id;
   const updateurl=`http://localhost:8080/faculty/editnoticeboard/${param.id}`;
@@ -60,8 +71,7 @@ const noticeId =param.id;
          },config).then(res=>
              console.log(res.data)
             )
-            //alert("Noticeboard With Id "+noticeId+" Updated Succesfully")
-
+            navigate("/faculty/viewnoticeboard")
             toast.success('noticeboard edited Succesfully', {
               position: "top-center",
               autoClose: 5000,
@@ -71,7 +81,6 @@ const noticeId =param.id;
               draggable: true,
               progress: undefined,
               });
-          //  navigate("/faculty/viewnoticeboard")
     }
   return (<diV>
              <FacultyNavBar/>
@@ -89,14 +98,10 @@ pauseOnHover
 
         <div className='cotainer-fluid'>
        <div className="row justify-content-around align-items-center" style={{height :"98vh" , marginTop:0}}>
-       <div className="col-4 p-5 shadow bg-white">
-            <span className='fs-3 mb-3'><center>Edit NoticeBoard</center></span>
-
+       <div className="col-4 p-5 shadow bg-white rounded">
+            <span className='fs-3 mb-3 fw-bolder'><center><h3>Edit Noticeboard</h3></center></span>
+           <br/>
             <form onSubmit={submit}>
-          {/* <div className='mb-3'>
-           <label>Faculty Name</label><br></br>
-            <input type='text' placeholder='Enter Faculty Name'className='form-control' onChange={(e)=>handle(e)} id='facultyName' value={data.value}></input>
-           </div> */}
            <div className='mb-3'>
              <label>Module Name</label>
              <input type ='text' className='form-control' placeholder='Enter Module Name' onChange={handleModuleName} value={moduleName} name="moduleName"></input>

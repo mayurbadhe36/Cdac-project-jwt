@@ -6,11 +6,11 @@ function  NavBar() {
   return (
     <div className='navbar px-5 trans' >
     <div><img  className='img' src="./image/images_low.png" ></img> </div>
-   <div className='text-white'><a href="#" style={{ textDecoration: 'none' }}><span className='text-white fs-1' >E-Vidyalaya</span></a></div>
-   <NavLink to="/"  style={{ textDecoration: 'none' }}><span className="letter fs-3 text-white">Home</span></NavLink>
-   <NavLink to="/about"  style={{ textDecoration: 'none' }}><span className="letter fs-3  text-white">About</span></NavLink>
-   <NavLink to="/contact"  style={{ textDecoration: 'none' }}><span className="letter fs-3  text-white">Contact</span></NavLink>
-   <NavLink to="/signin"  style={{ textDecoration: 'none' }}><span className="letter fs-3  text-white">Login</span></NavLink>
+    <a href="#"  style={{ textDecoration: 'none' }}><span className='fs-3 text-white fw-semibold' style={{fontFamily:'cursive'}} >E-Vidyalaya</span></a>
+   <NavLink to="/"  style={{ textDecoration: 'none' }}><span className='fs-3 text-white fw-semibold'>Home</span></NavLink>
+   <NavLink to="/about"  style={{ textDecoration: 'none' }}><span className='fs-3 text-white fw-semibold'>About</span></NavLink>
+   <NavLink to="/contact"  style={{ textDecoration: 'none' }}><span className='fs-3 text-white fw-semibold'>Contact</span></NavLink>
+   <NavLink to="/signin"  style={{ textDecoration: 'none' }}><span className='fs-3 text-white fw-semibold'>Login</span></NavLink>
 
    
     

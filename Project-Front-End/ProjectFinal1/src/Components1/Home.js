@@ -10,7 +10,7 @@ const CarouselContainer = () => {
       <Carousel.Item interval={3000}>
         <img
           className="d-block w-100" style={{height:"550px"}}
-          src="/image/image1.jpg"
+          src="/image/HomeImage1.jpg"
           alt="First slide"
         />
         <Carousel.Caption>
@@ -21,7 +21,7 @@ const CarouselContainer = () => {
       <Carousel.Item interval={2000}>
         <img
           className="d-block w-100"style={{height:"550px"}}
-          src="/image/ban1.jpg"
+          src="/image/HomeImage2.jpg"
         />
         <Carousel.Caption>
           
@@ -30,7 +30,7 @@ const CarouselContainer = () => {
       <Carousel.Item interval={2000}>
         <img
           className="d-block w-100"style={{height:"550px"}}
-          src="/image/image2.jpg"
+          src="/image/HomeImage3.jpg"
           alt="Third slide"
         />
         <Carousel.Caption>
@@ -40,7 +40,7 @@ const CarouselContainer = () => {
       <Carousel.Item interval={2000}>
         <img
           className="d-block w-100"style={{height:"550px"}}
-          src="/image/C1.jpg"
+          src="/image/HomeImage4.jpg"
           alt="Fourth slide"
         />
         <Carousel.Caption>
@@ -50,7 +50,7 @@ const CarouselContainer = () => {
       <Carousel.Item interval={2000}>
         <img
           className="d-block w-100"style={{height:"550px"}}
-          src="/image/image3.jpg"
+          src="/image/HomeImage5.jpg"
           alt="Fifth slide"
         />
         <Carousel.Caption>

@@ -30,6 +30,7 @@ import AddFaculty1 from './AdminPages/AddFaculty1';
 import EditNoticeBoard from './FacultyPages/EditNoticeBoard';
 import EditTimeTable from './FacultyPages/EditTimeTable';
 import Result from './StudentPages/Result';
+import EditAssignment from './FacultyPages/EditAssignment';
 
 function App() {
 return (
@@ -62,6 +63,8 @@ return (
 <Route  path="/faculty/editnoticeboard/:id" element={<EditNoticeBoard/>}/>
 <Route  path="/faculty/edittimetable/:id" element={<EditTimeTable/>}/>
 <Route exact path="/faculty/viewtimetable" element={<ViewTimeTable/>}/>
+<Route  path="/faculty/editassignment/:id" element={<EditAssignment/>}/>
+
 
 <Route exact path="/admin" element={<Admin/>}/>
 <Route exact path="/admin/addfaculty" element={<AddFaculty1/>}/>

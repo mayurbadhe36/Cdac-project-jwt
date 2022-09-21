@@ -9,7 +9,7 @@ function Contact() {
             <div className='cotainer-fluid'>
                     <div className="row justify-content-around align-items-center" style={{height :"98vh" , marginTop:10 , marginLeft:'20px'}}>
                     
-                    <div className="col-9 p-5 shadow bg-white" >
+                    <div className="col-9 p-5 shadow bg-white rounded" >
                     <center><span className='fw-light fs-1'>Contact Us</span></center>
                     <table  style={{marginLeft:40 , marginTop:20}}>
                         <tr>
@@ -24,16 +24,16 @@ function Contact() {
                                     </div>
                                 </div>
                          </td>
-                 <td>
+                         <td>
                     <div className="card text-bg-white mb-3" style={{Width: '200px', marginLeft:'-20px'}}>
                             <div className="card-body">
-                                <h5 class="card-title">Gaurav Sengar</h5>
-                                <p class="card-text">Gmail: gauravrajsengar@outlook.com</p>
-                                <a href="https://www.linkedin.com/in/gaurav-s-b25a72236" class="card-link"><i class="bi bi-linkedin"></i></a>
+                                <h5 class="card-title">Yogita Ghule</h5>
+                                
+                                <p class="card-text">Gmail:<b/> <br></br>yogitaghule11star@gmail.com</p>
+                                <a href="https://www.linkedin.com/in/yogita-ghule-4a26a315a" class="card-link"><i class="bi bi-linkedin"></i></a>
                         </div>
                     </div>
                 </td>
-
                 <td className='p-1 px-5 ' >
                     <div className="card text-bg-white mb-3" style={{Width: '200px', marginLeft:'-20px'}}>
                             <div className="card-body">
@@ -59,14 +59,21 @@ function Contact() {
                             </div>
                     </td>
 
-                <td>
+                    <td>
                     <div className="card text-bg-white mb-3" style={{Width: '200px', marginLeft:'-20px'}}>
                             <div className="card-body">
-                                <h5 class="card-title">Yogita Ghule</h5>
-                                
-                                <p class="card-text">Gmail:<b/> <br></br>yogitaghule11star@gmail.com</p>
-                                <a href="https://www.linkedin.com/in/yogita-ghule-4a26a315a" class="card-link"><i class="bi bi-linkedin"></i></a>
-                            
+                                <h5 class="card-title">Gaurav Sengar</h5>
+                                <p class="card-text">Gmail: <br></br>
+                                gauravrajsengar@outlook.com</p>
+                                <a href="https://www.linkedin.com/in/gaurav-s-b25a72236" class="card-link"><i class="bi bi-linkedin"></i></a>
+                        </div>
+                    </div>
+                </td>
+
+                <td>
+                    <div className="card text-bg-white mb-3" style={{Width: '200px', marginLeft:'30px'}}>
+                            <div className="card-body">
+                            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScEMSwsJdpqbIdMvYHOfffgWkqtLVDiEAZ1B7-PvrVIvAJ52A/viewform?embedded=true" width="220" height="110" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
                         </div>
                     </div>
                 </td>
