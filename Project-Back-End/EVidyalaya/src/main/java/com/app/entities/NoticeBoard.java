@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Future;
+import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.NotBlank;
 
 import lombok.Data;
@@ -19,7 +21,8 @@ import lombok.Setter;
 @Entity
 @Table(name = "noticeboard")
 public class NoticeBoard extends BaseEntity {
-
+	
+	@FutureOrPresent(message = "Date Should be in Future ")
 	private Date date;
 	@NotBlank(message = "description is required")
 	private String description;

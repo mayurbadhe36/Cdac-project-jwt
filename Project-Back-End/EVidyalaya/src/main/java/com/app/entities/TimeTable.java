@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Future;
+import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.NotBlank;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -23,12 +25,13 @@ import lombok.Setter;
 @Entity
 @Table(name = "timetable")
 public class TimeTable extends BaseEntity {
-
+	@FutureOrPresent(message = "Date Should be in future")
 	private Date date;
 	@Column(name = "starttime")
+	@Future(message = "Time Should be in future")
 	private LocalTime startTime;
 	@Column(name = "endtime")
-	@DateTimeFormat(pattern = "")
+	@Future(message = "TIme Should be in future")
 	private LocalTime endTime;
 //	@NotBlank(message = "faculty id is required")
 	@ManyToOne
@@ -54,5 +57,5 @@ public class TimeTable extends BaseEntity {
 //	public String getFacultyName() {
 //		return faculty.getName();
 //	}
-	
+
 }

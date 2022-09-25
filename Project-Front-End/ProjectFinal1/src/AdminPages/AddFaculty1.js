@@ -42,7 +42,9 @@ function AddFaculty1() {
             password: data.password
         },config).then(res=>
             console.log(res.data)
-            )  
+            ).catch(
+              alert("Date Should not be in future")
+            )
             alert("Faculty Added Successfully!!")
             navigate('/admin')
            

@@ -47,7 +47,9 @@ function AddTimeTable() {
           link:data.link
       },config).then(res=>
           console.log(res.data)
-          )  
+          ).catch(
+            alert("Date and time should be in future")
+          )
           navigate('/faculty')
           toast.success('TimeTable Added Succesfully!!!', {
             position: "top-center",

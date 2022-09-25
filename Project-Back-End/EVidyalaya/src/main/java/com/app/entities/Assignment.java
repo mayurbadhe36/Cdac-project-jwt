@@ -29,6 +29,7 @@ public class Assignment extends BaseEntity {
 	private String fileName;
 	@Column(name = "modulename", length = 45)
 	private String moduleName;
+
 	public Long getFaculty() {
 		return faculty.getId();
 	}

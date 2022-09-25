@@ -12,7 +12,6 @@ import com.app.repository.IUserRepository;
 
 @Service // or @Component also works!
 @Transactional
-
 public class CustomUserDetailsService implements UserDetailsService {
 	// dep : user repository : based upon spring data JPA
 	@Autowired

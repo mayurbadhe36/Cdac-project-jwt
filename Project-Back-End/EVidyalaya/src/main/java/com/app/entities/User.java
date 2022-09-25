@@ -8,6 +8,9 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Past;
+
+import org.aspectj.lang.annotation.Before;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,7 +29,7 @@ public class User extends BaseEntity {
 	@Column(length = 45)
 	@NotBlank(message = "address is required")
 	private String address;
-//	@JsonFormat(pattern = "DD-MM-YYYY")
+	@Past(message = "Date Should not be in future")
 	private LocalDate dob;
 	@NotBlank(message = "password is required")
 	@Column(length = 400)
@@ -38,18 +41,5 @@ public class User extends BaseEntity {
 	private String mobNo;
 	@Enumerated(EnumType.STRING)
 	private Role role;
-
-//	public User(@NotBlank(message = "name is required") String name,
-//			@NotBlank(message = "address is required") String address, LocalDate dob,
-//			@NotBlank(message = "password is required") String password,
-//			@NotBlank(message = "email is required") String email, String mobNo) {
-//		super();
-//		this.name = name;
-//		this.address = address;
-//		this.dob = dob;
-//		this.password = password;
-//		this.email = email;
-//		this.mobNo = mobNo;
-//	}
 
 }

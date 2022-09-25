@@ -10,7 +10,7 @@ function  NavBar() {
    <NavLink to="/"  style={{ textDecoration: 'none' }}><span className='fs-3 text-white fw-semibold'>Home</span></NavLink>
    <NavLink to="/about"  style={{ textDecoration: 'none' }}><span className='fs-3 text-white fw-semibold'>About</span></NavLink>
    <NavLink to="/contact"  style={{ textDecoration: 'none' }}><span className='fs-3 text-white fw-semibold'>Contact</span></NavLink>
-   <NavLink to="/signin"  style={{ textDecoration: 'none' }}><span className='fs-3 text-white fw-semibold'>Login</span></NavLink>
+   <NavLink to="/signin"  style={{ textDecoration: 'none' }}><span className='fs-3 text-white fw-semibold'>Log in</span></NavLink>
 
    
     

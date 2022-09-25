@@ -27,7 +27,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.app.dto.ApiResponse;
-import com.app.dto.AssignmentAnswerDto;
 import com.app.entities.Assignment;
 import com.app.entities.AssignmentAnswer;
 import com.app.entities.NoticeBoard;
@@ -36,6 +35,7 @@ import com.app.entities.User;
 import com.app.filehandlingutils.FacultyAssignmentUploadResponse;
 import com.app.filehandlingutils.FileDownloadUtil;
 import com.app.filehandlingutils.FileUploadUtils;
+import com.app.mail.MailService;
 import com.app.service.IFacultyService;
 
 @RestController
@@ -45,6 +45,8 @@ public class FacultyController {
 
 	@Autowired
 	IFacultyService facultyService;
+	@Autowired
+	MailService mailService;
 
 	@PostMapping("/addnoticeboard/{userId}")
 	public ResponseEntity<?> addNoticeBoard(@RequestBody @Valid NoticeBoard noticeboard, @PathVariable Long userId) {
@@ -113,6 +115,7 @@ public class FacultyController {
 			response.setSize(size);
 			response.setDownloadUri("/downloadFile/" + filecode);
 			response.setFilecode(filecode);
+			mailService.sendSimpleEmail(facultyId);
 			return new ResponseEntity<>(facultyService.addAssignment(a, facultyId, filecode), HttpStatus.CREATED);
 		} catch (RuntimeException e) {
 			return new ResponseEntity<>(new ApiResponse(e.getMessage()), HttpStatus.BAD_REQUEST);

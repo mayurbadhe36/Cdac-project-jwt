@@ -57,7 +57,7 @@ public class AdminController {
 		try {
 			return new ResponseEntity<>(adminService.addStudent(u), HttpStatus.CREATED);
 		} catch (RuntimeException e) {
-			System.out.println("err in add Faculty " + e);
+			System.out.println("err in add Student " + e);
 			return new ResponseEntity<>(new ApiResponse(e.getMessage()), HttpStatus.BAD_REQUEST);// => invalid data from
 		}
 	}

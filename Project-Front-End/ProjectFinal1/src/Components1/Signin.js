@@ -11,6 +11,10 @@ function  Signin(){
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
+    function reset (){
+       document.getElementById("email").value = ""
+       document.getElementById("pass").value = ""
+}
     const handleEmail = (e) => {
         setEmail(e.target.value)
     }
@@ -41,13 +45,11 @@ function  Signin(){
               // alert('success')
                //localStorage.setItem("user", JSON.stringify(result.data));
 
-               return result.data;
-
-              //  .catch(error => {
-              //   alert('service error')
-              //   console.log(error)
-                
-               })
+               return result.data;      
+               }).catch(error => {
+                     alert('Invalid Credential')
+                     reset()
+                      console.log(error)})
                //console.log(JSON.stringify(user1));
                console.log(user1.authenticatedDetails.principal.id)
                sessionStorage.setItem("userName",user1.authenticatedDetails.principal.name)
@@ -65,6 +67,7 @@ function  Signin(){
             
         }
         
+       
         return(
               <div>
                      <NavBar></NavBar>
@@ -88,7 +91,7 @@ function  Signin(){
                                       <div className="field">
                                    <label>Email Address</label>
                                   <div className="mb-3">
-                                         <input type="email" name="email" className="form-control" placeholder="Enter Email" onChange={handleEmail} value= {email} required/>
+                                         <input type="email" name="email" id="email" className="form-control" placeholder="Enter Email" onChange={handleEmail} value= {email} required/>
                                          <div id="emailErrorMsg"></div>
                                   </div>
                                  
@@ -96,7 +99,7 @@ function  Signin(){
                                       <div className="field">
                                   <label>Password</label>
                                   <div className="mb-3">
-                                         <input type="password" name="pass" className="form-control" placeholder="Enter Password" onChange={handlePassword} value={password} required/>
+                                         <input type="password" name="pass" id="pass" className="form-control" placeholder="Enter Password" onChange={handlePassword} value={password} required/>
                                   </div>
                                          <div id="passErrorMsg"></div>
                                   </div>
@@ -105,9 +108,7 @@ function  Signin(){
                                   <div className="mb-3 py-3" style={{textAlign:"center"}}>
                                          <button className="btn btn-primary form-control" onClick={handleApi} disabled={!email || !password}>Sign in</button>
                                   </div>
-                                  </div>
-                                  
-                              
+                                  </div>                        
                     </div>
                    
             </div>
