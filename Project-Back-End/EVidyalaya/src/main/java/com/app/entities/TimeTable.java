@@ -12,9 +12,6 @@ import javax.validation.constraints.Future;
 import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.NotBlank;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -44,7 +41,7 @@ public class TimeTable extends BaseEntity {
 	@Column(length = 20)
 	private String platform;
 	@NotBlank(message = "link is required")
-	@Column(length = 200)
+	@Column(length = 400)
 	private String link;
 	@NotBlank(message = "module name  is required")
 	@Column(name = "modulename", length = 45)

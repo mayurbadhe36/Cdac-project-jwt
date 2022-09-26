@@ -68,19 +68,30 @@ const noticeId =param.id;
             moduleName:moduleName,
             date:date,
             description:description,
-         },config).then(res=>
-             console.log(res.data)
-            )
+         },config).then((response) => {
+          //         alert(" record updated  Succesfully");
+                   toast.success('Noticeboard Updated Succesfully !!', {
+                     position: "top-center",
+                     autoClose: 5000,
+                     hideProgressBar: false,
+                     closeOnClick: true,
+                     pauseOnHover: true,
+                     draggable: true,
+                     progress: undefined,
+                   })
+                 }).catch(error => {
+                       toast.error(' Something Went Wrong !!!', {
+                         position: "top-center",
+                         autoClose: 5000,
+                         hideProgressBar: false,
+                         closeOnClick: true,
+                         pauseOnHover: true,
+                         draggable: true,
+                         progress: undefined,
+                       });
+           //            alert("Error!!!");
+                     })
             navigate("/faculty/viewnoticeboard")
-            toast.success('noticeboard edited Succesfully', {
-              position: "top-center",
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-              });
     }
   return (<diV>
              <FacultyNavBar/>

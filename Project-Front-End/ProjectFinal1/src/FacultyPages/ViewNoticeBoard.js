@@ -57,7 +57,8 @@ const removeNoticeBoard =(id) => {
   };
   axios.delete(`http://localhost:8080/faculty/viewnoticeboard/delete/${id}`,config).then((response) => {
 
-  toast.success('noticeboard Deleted Succesfully', {
+    alert("Noticeboard record with Id " + id + " deleted!");
+    toast.success('Timetable Record Deleted With Id ' + id + ' Succesfully ', {
       position: "top-center",
       autoClose: 5000,
       hideProgressBar: false,
@@ -65,15 +66,19 @@ const removeNoticeBoard =(id) => {
       pauseOnHover: true,
       draggable: true,
       progress: undefined,
-      });
-       
- // alert("NoticeBoard record with Id " + id + " deleted!");
-   // navigate('/faculty/viewnoticeboard')
-    navigate('/faculty/viewnoticeboard')
+    })
   }).catch(error => {
-    alert("Error Ocurred in remove Noticeboard :" + error);
-  });
-
+    toast.error(' Something Went Wrong !!!', {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+    alert("Error!!!");
+  })
 }
   return (
     <div>
@@ -90,7 +95,7 @@ const removeNoticeBoard =(id) => {
           pauseOnHover
 />
         <div className='cotainer-fluid' style={{overflow:"auto"}}>
-    <div className="row justify-content-around align-items-center" style={{height :"98vh" , marginTop:0}}>
+    <div className="row justify-content-around align-items-center" style={{height :"98vh" , marginTop:30}}>
     <div className="col-8 p-5 shadow bg-white rounded">
         <center><span className='fs-2 fw-bolder'><h2>Notice Board</h2></span></center>
         <div className='ui search'>
@@ -99,7 +104,7 @@ const removeNoticeBoard =(id) => {
             </div>
             <br></br>
             </div>
-            <div style={{overflow:"auto"}}>
+            <div >
         <table className="table table-striped table-secondary table-hover">
                  <thead className='table-dark'>
                  <tr>
@@ -133,22 +138,18 @@ const removeNoticeBoard =(id) => {
                   </td>
                   <td>
                     {description}
-                  </td>
-                 
+                  </td>  
                   <td>
               <button className="button border-white" onClick={()=>navigate(`/faculty/editnoticeboard/${id}`)}><i className="bi bi-pencil-square"></i></button>
               <button className="button border-white" onClick={() => removeNoticeBoard(id)}><i className="bi bi-trash3-fill"></i></button>
             </td>
                 </tr>)}
-              </tbody>
-              
+              </tbody>    
           </table> 
           </div> 
         </div>
         </div>
-        </div>
-
-        
+        </div>   
     </div>
   )
 }

@@ -22,6 +22,8 @@ function AddNoticeBoard() {
 
   const id = sessionStorage.getItem("userId");
   const url = `http://localhost:8080/faculty/addnoticeboard/${id}`
+  const current = new Date();
+  const date = `${current.getFullYear()}-0${current.getMonth() + 1}-${current.getDate()}`;
   const config = {
     headers: {
       Authorization: `Bearer ${sessionStorage.getItem("jwtToken")}`,
@@ -36,6 +38,12 @@ function AddNoticeBoard() {
     moduleName: ""
   })
 
+  function handle(e) {
+    const newData = { ...data }
+    newData[e.target.id] = e.target.value
+    setData(newData)
+    console.log(newData)
+  }
 
   function submit(e) {
     e.preventDefault();
@@ -44,35 +52,39 @@ function AddNoticeBoard() {
       date: data.date,
       description: data.description,
       moduleName: data.moduleName
-    }, config).then(res =>
-      console.log(res.data)
-    ).catch(
-      alert("date should be in future ")
-    )
-    navigate('/faculty')
-    toast.success('TimeTable Added Succesfully!!!', {
-      position: "top-center",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
-
-  }
-  function handle(e) {
-    const newData = { ...data }
-    newData[e.target.id] = e.target.value
-    setData(newData)
-    console.log(newData)
+    }, config).then(response => { 
+      // alert("Noticeboard Added Succesfully!!!",response.data);
+       toast.success('Noticeboard Added Succesfully!!!', {
+         position: "top-center",
+         autoClose: 5000,
+         hideProgressBar: false,
+         closeOnClick: true,
+         pauseOnHover: true,
+         draggable: true,
+         progress: undefined,
+         });
+       console.log("",response.data)
+     }
+          ).catch(error =>{
+           toast.error(' Something Went Wrong !!!', {
+             position: "top-center",
+             autoClose: 5000,
+             hideProgressBar: false,
+             closeOnClick: true,
+             pauseOnHover: true,
+             draggable: true,
+             progress: undefined,
+             });
+          // alert("Error!!!");
+          })
+          navigate("/faculty")
   }
 
   return (
     <div>
       <FacultyNavBar />
       <div className='cotainer-fluid'>
-        <div className="row justify-content-around align-items-center" style={{ height: "98vh", marginTop: 0 }}>
+        <div className="row justify-content-around align-items-center" style={{ height: "98vh",marginTop:-25 }}>
           <div className="col-4 p-5 shadow bg-white rounded">
             <span className='fs-3 mb-3 fw-bolder'><center><h2>Add Noticeboard</h2></center></span>
             <br></br>
@@ -83,7 +95,7 @@ function AddNoticeBoard() {
               </div>
               <div className='mb-3'>
                 <label>Date</label>
-                <input type='date' className='form-control' placeholder='Enter date' onChange={(e) => handle(e)} id='date' value={data.value}></input>
+                <input type='date' className='form-control' placeholder='Enter date' onChange={(e) => handle(e)} id='date' value={data.value} min={date}></input>
               </div>
               <div className='mb-3'>
                 <label>Description</label><br></br>

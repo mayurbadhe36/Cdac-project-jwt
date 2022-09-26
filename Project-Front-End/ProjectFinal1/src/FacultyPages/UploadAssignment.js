@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import FacultyNavBar from './FacultyNavBar'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 function UploadAssignment() {
   useEffect(() => {  
@@ -43,19 +44,40 @@ const handleFile =function(e){
        };
       axios
         .post("http://localhost:8080/faculty/addassignment", formData,config)
-        .then((res) => {
-          alert("Assignment Upload Successfully");
-        })
-        .catch((err) => alert("File Upload Error"));
-        console.log(formData);
-        navigate('/faculty')
+        .then(response => { 
+          // alert("Assignment Uploaded  Succesfully!!!",response.data);
+           toast.success('Assignment Uploaded Succesfully!!!', {
+             position: "top-center",
+             autoClose: 5000,
+             hideProgressBar: false,
+             closeOnClick: true,
+             pauseOnHover: true,
+             draggable: true,
+             progress: undefined,
+             });
+           console.log("",response.data)
+         }
+              ).catch(error =>{
+               toast.error(' Something Went Wrong !!!', {
+                 position: "top-center",
+                 autoClose: 5000,
+                 hideProgressBar: false,
+                 closeOnClick: true,
+                 pauseOnHover: true,
+                 draggable: true,
+                 progress: undefined,
+                 });
+              // alert("Error!!!");
+              })
+              navigate("/faculty")
+
     };
 
   return (
     <div>
         <FacultyNavBar/>
         <div className="container-fluid">
-              <div className="row justify-content-around align-items-center" style={{height :"98vh" , marginTop:20}}>
+              <div className="row justify-content-around align-items-center" style={{height :"98vh" , marginTop:-20}}>
                       <div className="col-4 p-5 shadow bg-white rounded">
                          <form>
                             <span className="fs-3 fw-bolder" style={{marginTop:-50}}><center><h3>Upload Assignment</h3></center></span>
@@ -84,7 +106,7 @@ const handleFile =function(e){
                                  </div>
                                  <br></br>
                                     <div className="mb-3 py-3" style={{textAlign:"center"}}>
-                                           <button className="btn btn-primary form-control" onClick={submitForm}>Upload</button>
+                                           <button className="btn btn-primary form-control" onClick={submitForm}><i class="bi bi-cloud-arrow-up-fill"></i> Upload  </button>
                                     </div>
                             </div>
                         </form>  	

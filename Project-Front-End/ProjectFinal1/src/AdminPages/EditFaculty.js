@@ -3,6 +3,7 @@ import AdminNavBar from './AdminNavBar';
 import {useParams, useNavigate} from "react-router-dom";
 import { useEffect,useState } from 'react';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 function EditFaculty() {
   const navigate = useNavigate();
@@ -44,7 +45,8 @@ function EditFaculty() {
           const handleAddress = (e) => {
               setAddress(e.target.value)
           }
-
+const current = new Date();
+  const date = `${current.getFullYear()}-0${current.getMonth()+1}-${current.getDate()}`;
   useEffect(() => {
     const config = {
       headers: {
@@ -81,11 +83,31 @@ function EditFaculty() {
             mobNo:mobNo,
              email:email,
              address:address   
-         },config).then(res=>
-             console.log(res.data)
-            )
-            alert("Faculty With Id "+facultyId+" Updated Suucesfully")
-            navigate("/admin/viewfaculty")
+         },config).then((response) => {
+
+ //         alert("Faculty record " + facultyId + " Updated!");
+          toast.success('Faculty Record Updated With Id ' + facultyId + ' Succesfully ', {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          })
+        }).catch(error => {
+              toast.error(' Something Went Wrong !!!', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+              });
+  //            alert("Error!!!");
+            })
+            navigate('/admin/viewfaculty')
     }
     
   return (
@@ -104,12 +126,12 @@ function EditFaculty() {
            </div>
            <div className='mb-3'>
              <label for ="dob" >Date Of Birth</label>
-             <input type ='date' className='form-control' placeholder='Enter date'onChange={handleDob} value={dob} name="dob"></input>
+             <input type ='date' className='form-control' placeholder='Enter date'onChange={handleDob} value={dob} name="dob" max={date}></input>
            </div>
           
            <div className='mb-3'>
               <label for ="mobNo">Mobile: </label>
-              <input type='text' className='col-4' onChange={handleMobNo} value={mobNo} name="mobNo"></input>
+              <input type='text' className='col-4' onChange={handleMobNo} value={mobNo} name="mobNo" maxLength={10} pattern="\d{10}"></input>
                 &nbsp;
               <label for ="email">Email:</label> 
               <input type='email' className='col-5' onChange={handleEmail}  value={email} name="email" ></input ><br></br>
@@ -119,7 +141,6 @@ function EditFaculty() {
              <label for ="address">Address</label><br></br>
              <textarea className='col-100  form-control'onChange={handleAddress} value={address} name="address"> </textarea>
            </div>
-           <br></br>
            <div className='mb-3'>
            <button className='btn btn-primary form-control'>Update</button>
            </div>

@@ -49,7 +49,7 @@ function NoticeBoard() {
           <div>
             <StudentNavBar/>
             <div className='cotainer-fluid' style={{overflow:"auto"}}>
-    <div className="row justify-content-around align-items-center" style={{height :"98vh" , marginTop:-25}}>
+    <div className="row justify-content-around align-items-center" style={{height :"98vh" , marginTop:60}}>
     
     <div className="col-8 p-5 shadow rounded" style={{backgroundColor : 'white'}}>
     <center><span className="fs-2 fw-bolder"><h2>View Noticeboard</h2></span></center>
@@ -71,7 +71,7 @@ function NoticeBoard() {
              <table className="table border table-striped table-secondary table-hover" style={{cellspacing:'5'}}>
                <tr>
                   <td>
-                    <span className="fw-bolder">Description : </span> {description}
+                    <span className="fw-bolder">Description : </span> {description}  &nbsp; &nbsp; &nbsp; &nbsp; <i class="bi bi-bookmark-fill"></i>
                   </td>
                   </tr>
                   <tr>

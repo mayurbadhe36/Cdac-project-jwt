@@ -10,6 +10,7 @@ function  StudentNavBar() {
   //console.log(state.user)
   const handleLogout  = function(){
     sessionStorage.clear();
+    alert("Signed Out Successfully !!!");
     navigate('/signin');
     toast.info('Signed Out Successfully', {
       position: "top-center",

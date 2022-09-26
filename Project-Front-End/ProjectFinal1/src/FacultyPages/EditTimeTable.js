@@ -3,6 +3,7 @@ import FacultyNavBar from './FacultyNavBar';
 import {useParams, useNavigate} from "react-router-dom";
 import { useEffect,useState } from 'react';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 function EditTimeTable() {
   const navigate = useNavigate();
@@ -29,7 +30,8 @@ const timeId=param.id;
   const [moduleName,setModuleName]=useState('')
   const [platform,setPlatform]=useState('')
   const[link,setLink]=useState('')
-
+  const current = new Date();
+  const vdate = `${current.getFullYear()}-0${current.getMonth() + 1}-${current.getDate()}`;
             const handleModuleName = (e) => {
               setModuleName(e.target.value)
           }
@@ -83,10 +85,29 @@ const timeId=param.id;
             moduleName:moduleName,
             platform:platform,
             link:link
-         },config).then(res=>
-             console.log(res.data)
-            )
-            alert("TimeTable  With Id "+timeId+" Updated Succesfully")
+         },config).then((response) => {
+          //         alert(" record updated  Succesfully");
+                   toast.success('Timetable Updated Succesfully !!', {
+                     position: "top-center",
+                     autoClose: 5000,
+                     hideProgressBar: false,
+                     closeOnClick: true,
+                     pauseOnHover: true,
+                     draggable: true,
+                     progress: undefined,
+                   })
+                 }).catch(error => {
+                       toast.error(' Something Went Wrong !!!', {
+                         position: "top-center",
+                         autoClose: 5000,
+                         hideProgressBar: false,
+                         closeOnClick: true,
+                         pauseOnHover: true,
+                         draggable: true,
+                         progress: undefined,
+                       });
+           //            alert("Error!!!");
+                     })
             navigate("/faculty/viewtimetable")
     }
   return (
@@ -100,7 +121,7 @@ const timeId=param.id;
          <form onSubmit={submit}>
         <div className='mb-3'>
           <label>Date</label>
-          <input type ='date' className='form-control' placeholder='Enter date' onChange={handleDate} value={date} name="date"></input>
+          <input type ='date' className='form-control' placeholder='Enter date' onChange={handleDate} value={date} name="date" min={vdate}></input>
         </div>
         <div className='mb-3'>
            <label>Start Time: </label>

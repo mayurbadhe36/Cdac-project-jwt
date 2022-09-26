@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import FacultyNavBar from './FacultyNavBar'
 import axios from 'axios';
 import { useParams,useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 function EditAssignment() {
     const param = useParams();
@@ -69,9 +70,29 @@ function submit(e){
                     moduleName:moduleName,
                     file:selectedFile,
                     description:description,
-                 },config).then(res=>
-                     console.log(res.data)
-                    )
+                 },config).then((response) => {
+                  //         alert(" Assignment updated  Succesfully");
+                           toast.success('Assignment Updated Succesfully !!', {
+                             position: "top-center",
+                             autoClose: 5000,
+                             hideProgressBar: false,
+                             closeOnClick: true,
+                             pauseOnHover: true,
+                             draggable: true,
+                             progress: undefined,
+                           })
+                         }).catch(error => {
+                               toast.error(' Something Went Wrong !!!', {
+                                 position: "top-center",
+                                 autoClose: 5000,
+                                 hideProgressBar: false,
+                                 closeOnClick: true,
+                                 pauseOnHover: true,
+                                 draggable: true,
+                                 progress: undefined,
+                               });
+                   //            alert("Error!!!");
+                             })
                     navigate("/faculty/viewassignment")
 
             }

@@ -56,8 +56,9 @@ function ViewAssignment() {
       },
     };
     axios.delete(`http://localhost:8080/faculty/viewassignment/delete/${id}`,config).then((response) => {
-      
-    toast.success('Assignment Deleted Succesfully', {
+
+      alert("Assignment record With Id " + id + " deleted!");
+      toast.success('Assignment Record Deleted With Id ' + id + ' Succesfully ', {
         position: "top-center",
         autoClose: 5000,
         hideProgressBar: false,
@@ -65,32 +66,37 @@ function ViewAssignment() {
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-        });
-         
-   // alert("NoticeBoard record with Id " + id + " deleted!");
-     // navigate('/faculty/viewnoticeboard')
-      navigate('/faculty/viewassignment')
+      })
     }).catch(error => {
-      alert("Error Ocurred in remove Noticeboard :" + error);
-    });
+      toast.error(' Something Went Wrong !!!', {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      alert("Error!!!");
+    })
   
   }
   return(
     <div>
       <FacultyNavBar/>
       <ToastContainer
-          position="top-center"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-/>
-      <div className='container-fluid'>
-       <div className="row justify-content-around align-items-center" style={{height :"98vh" , marginTop:0}}>
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
+      <div className='container-fluid' style={{overflow:"auto"}}>
+       <div className="row justify-content-around align-items-center" style={{height :"98vh" , marginTop:35}}>
        <div className="col-8 p-5 shadow bg-white rounded">
            <center><span className='fw-bolder fs-3'><h2>View Assignment </h2></span></center>
            <div className='ui search'>

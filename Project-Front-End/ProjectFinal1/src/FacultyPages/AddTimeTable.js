@@ -22,6 +22,10 @@ function AddTimeTable() {
       Authorization: `Bearer ${sessionStorage.getItem("jwtToken")}`,
     },
   };
+  const current = new Date();
+  const date = `${current.getFullYear()}-0${current.getMonth() + 1}-${current.getDate()}`;
+ 
+
   const id=sessionStorage.getItem("userId");
   const url=`http://localhost:8080/faculty/addtimetable/${id}`
   const navigate = useNavigate();
@@ -35,6 +39,13 @@ function AddTimeTable() {
       link:""
   })
 
+  function handle(e){
+    const newData={...data}
+    newData[e.target.id]=e.target.value
+    setData(newData)
+    console.log(newData)
+}
+
   function submit(e){
       e.preventDefault();
       axios.post(url,{
@@ -45,51 +56,47 @@ function AddTimeTable() {
           moduleName:data.moduleName,
           platform:data.platform,
           link:data.link
-      },config).then(res=>
-          console.log(res.data)
-          ).catch(
-            alert("Date and time should be in future")
-          )
-          navigate('/faculty')
-          toast.success('TimeTable Added Succesfully!!!', {
-            position: "top-center",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            });
+      },config).then(response => { 
+        // alert("Timetable Added Succesfully!!!",response.data);
+         toast.success('Timetable Added Succesfully!!!', {
+           position: "top-center",
+           autoClose: 5000,
+           hideProgressBar: false,
+           closeOnClick: true,
+           pauseOnHover: true,
+           draggable: true,
+           progress: undefined,
+           });
+         console.log("",response.data)
+       }
+            ).catch(error =>{
+             toast.error(' Something Went Wrong !!!', {
+               position: "top-center",
+               autoClose: 5000,
+               hideProgressBar: false,
+               closeOnClick: true,
+               pauseOnHover: true,
+               draggable: true,
+               progress: undefined,
+               });
+            // alert("Error!!!");
+            })
+            navigate("/faculty")
   }
-  function handle(e){
-      const newData={...data}
-      newData[e.target.id]=e.target.value
-      setData(newData)
-      console.log(newData)
-  }
-
   return (
 
      <div>
         <FacultyNavBar/>
         <div className='cotainer-fluid'>
-       <div className="row justify-content-around align-items-center" style={{height :"98vh" , marginTop:0}}>
+       <div className="row justify-content-around align-items-center" style={{height :"98vh" ,marginTop:20}}>
        <div className="col-4 p-5 shadow bg-white rounded">
             <span className='fs-3 mb-3 fw-bolder'><center><h2>Add Timetable</h2></center></span>
             <br></br>
             <form onSubmit={submit}>
-          {/* <div className='mb-3'>
-           <lable>Faculty Name</lable><br></br>
-            <input type='text' placeholder='Enter Faculty Name' className='form-control' onChange={(e)=>handle(e)} id='facultyName' value={sessionStorage.getItem("userName")}></input>
-           </div> */}
            <div className='mb-3'>
              <label>Date</label>
-             <input type ='date' className='form-control' placeholder='Enter date' onChange={(e)=>handle(e)} id='date' value={data.value}></input>
+             <input type ='date' className='form-control' placeholder='Enter date' onChange={(e)=>handle(e)} id='date' value={data.value} min={date}></input>
            </div>
-           {/* <div className='mb-3'>
-             <label>Description</label><br></br>
-             <textarea className='col-100  form-control' onChange={(e)=>handle(e)} id='description' value={data.value}> </textarea>
-           </div> */}
            <div className='mb-3'>
               <label>Start Time: </label>
               <input type='time' className='col-3' onChange={(e)=>handle(e)} id='startTime' value={data.value}></input>

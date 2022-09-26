@@ -116,8 +116,8 @@ const submitForm = (e) => {
     return (
           <div>
            <StudentNavBar/>
-            <div className='cotainer-fluid'>
-       <div className="row justify-content-around align-items-center" style={{height :"98vh" , marginTop:0}}>
+            <div className='cotainer-fluid' style={{overflow:"auto"}}>
+       <div className="row justify-content-around align-items-center" style={{height :"98vh" , marginTop:60}}>
        <div className="col-8 p-5 shadow bg-white rounded">
        
            <center><span className="fs-2 fw-bolder"><h2>Assignment</h2></span></center>
@@ -127,7 +127,7 @@ const submitForm = (e) => {
             </div>
             <br></br>
             </div>
-           <table className="table table-striped tabel-secondary table-hover">
+           <table className="table table-striped tabel-secondary table-hover table-bordered ">
                  <thead className='table-dark'>
                    <tr>
                   <th>Sr.No</th>
@@ -153,13 +153,13 @@ const submitForm = (e) => {
               <td>{facultyName}</td>
              <td>{moduleName}</td>
              <td>{description}</td>
-             <td><button className="btn btn-primary"  onClick={()=>handleDownload(fileName)}>Download</button></td>
+             <td><button className="btn btn-primary"  onClick={()=>handleDownload(fileName)}> <i class="bi bi-box-arrow-in-down"></i> Download</button></td>
              <div className="field">
                                  <label>Upload File</label><br></br>
                                      <input type="file"
        name="file" onChange={(e)=>handleFile(e,id)}
         /></div>
-        <button className="btn btn-info" onClick={(e)=>submitForm(e)}>Upload</button>
+        <button className="btn btn-info" onClick={(e)=>submitForm(e)}> <i class="bi bi-cloud-arrow-up-fill"></i> Upload</button>
              </tr> )}
                  </tbody>
 

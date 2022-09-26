@@ -22,21 +22,21 @@ function Faculty() {
     <div>
       <FacultyNavBar/>   
       <ToastContainer
-          position="top-center"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          />
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <div className='cotainer-fluid'>
     <div className="row justify-content-around align-items-center" style={{height :"98vh" , marginTop:-50}}>
     
     <div className="col-10 p-5 shadow bg-white rounded" >
-    <center><span className='fw-bolder fs-1'><h3>Faculty Dashboard</h3></span></center>
+    <center><span className='fw-bolder fs-1'><h3> <i class="bi bi-person-square"></i> &nbsp;Faculty Dashboard</h3></span></center>
     <br></br>
       <table  style={{marginLeft:40 , marginTop:20}}>
           <tr>

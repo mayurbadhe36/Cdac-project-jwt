@@ -7,6 +7,7 @@ function AdminNavBar() {
     const navigate = useNavigate()
   const handleLogout  = function(){
     sessionStorage.clear();
+    alert("Signed Out Successfully !!")
     navigate('/signin');
     toast.info('Signed Out Successfully', {
       position: "top-center",

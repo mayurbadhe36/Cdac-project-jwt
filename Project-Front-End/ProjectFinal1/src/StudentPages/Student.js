@@ -23,10 +23,10 @@ function Student() {
           <StudentNavBar/>
         {/* <h5>{state.user.data.name}</h5> */}
         <div className='cotainer-fluid'>
-    <div className="row justify-content-around align-items-center" style={{height :"98vh" , marginTop:-50}}>
+    <div className="row justify-content-around align-items-center" style={{height :"98vh" , marginTop:-30}}>
     
-    <div className="col-8 p-5 shadow bg-white" >
-    <center><span className='fw-bolder fs-2'><h2>Student Dashboard</h2></span></center>
+    <div className="col-8 p-5 shadow bg-white rounded" >
+    <center><span className='fw-bolder fs-2'><h2>  <i class="bi bi-mortarboard"></i> &nbsp;  Student Dashboard</h2></span></center>
     <br></br>
       <table  style={{marginLeft:40 , marginTop:20}}>
           <tr>

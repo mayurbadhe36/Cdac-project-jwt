@@ -50,8 +50,8 @@ function TimeTable() {
           <div>
             <StudentNavBar/>
             {/* <h5>{state.user.data.name}</h5> */}
-            <div className='cotainer-fluid'>
-       <div className="row justify-content-around align-items-center" style={{height :"98vh" , marginTop:0}}>
+            <div className='cotainer-fluid' style={{overflow:"auto"}}>
+       <div className="row justify-content-around align-items-center" style={{height :"98vh" , marginTop:55}}>
        <div className="col-8 p-5 shadow bg-white rounded">
            <center><span className='fs-2 fw-bolder' ><h2>Timetable Details</h2></span></center>
            <div className='ui search'>
@@ -93,7 +93,7 @@ function TimeTable() {
              <td>{endTime}</td>
              <td>{moduleName}</td>
              <td>{platform}</td>
-            <td><a href='#'>{link}</a></td>
+            <td><a href={link}>Click Here</a></td>
              </tr>  )}
               
                  </tbody>

@@ -1,10 +1,7 @@
 package com.app.controller;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
-
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
@@ -17,15 +14,11 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.app.dto.ApiResponse;
-import com.app.dto.AssignmentAnswerDto;
-import com.app.dto.CredentialDto;
 import com.app.entities.Assignment;
 import com.app.entities.AssignmentAnswer;
 import com.app.entities.NoticeBoard;
@@ -43,21 +36,10 @@ public class StudentController {
 
 	@Autowired
 	IStudentService studentService;
-//
-//	@PostMapping
-//	public ResponseEntity<?> authenticateUser(@RequestBody @Valid CredentialDto cred) {
-//		User u = studentService.authenticateUser(cred.getEmail(), cred.getPassword());
-//		HashMap<String, Object> ht = new HashMap<String, Object>();
-//		if (u == null)
-//			return new ResponseEntity<>(new ApiResponse("Invalid Emp ID !!!!!!!!!!!!!!!!"), HttpStatus.NOT_FOUND);// =>
-//		ht.put("status", new String("success"));
-//		ht.put("data", u);
-//		return ResponseEntity.ok(ht);
-//	}
 
 	@GetMapping("/assignment")
 	public List<Assignment> getAllAssignment() {
-		// List<Assignment> assignments=new ArrayList<Assignment>();
+
 		return studentService.getAllAssignment();
 	}
 
@@ -76,27 +58,6 @@ public class StudentController {
 
 		return studentService.getAllFacultyByRoleFaculty();
 	}
-
-//	@PostMapping("/uploadAssignment")
-//	public ResponseEntity<FileUploadResponse> uploadFile(@RequestParam Long assignId, @RequestParam Long studentId,
-//			@RequestParam("file") MultipartFile multipartFile) throws IOException {
-//		try {
-//			String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
-//			long size = multipartFile.getSize();
-//			String filecode = FileUploadUtils.saveFile(fileName, multipartFile);
-//			FileUploadResponse response = new FileUploadResponse();
-//			response.setFileName(fileName);
-//			response.setSize(size);
-//			response.setDownloadUri("/downloadFile/" + filecode);
-//			// String filelocation = "/downloadFile/" + filecode;
-//			studentService.saveAssignmentFile(assignId, studentId, filecode);
-//			response.setAssignmentId(assignId);
-//			response.setStudentId(studentId);
-//			return new ResponseEntity<>(response, HttpStatus.OK);
-//		} catch (RuntimeException e) {
-//			throw new RuntimeException("Something went wrong");
-//		}
-//	}
 
 	@GetMapping("/downloadFile/{fileCode}")
 	public ResponseEntity<?> downloadFile(@PathVariable("fileCode") String fileCode) {

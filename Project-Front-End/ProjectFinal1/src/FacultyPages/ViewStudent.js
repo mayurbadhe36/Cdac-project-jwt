@@ -52,7 +52,7 @@ function ViewStudent() {
     <FacultyNavBar/>
    
     <div className='cotainer-fluid' style={{overflow:"auto"}}>
-    <div className="row justify-content-around align-items-center" style={{height :"98vh" , marginTop:0}}>
+    <div className="row justify-content-around align-items-center" style={{height :"98vh" , marginTop:-70}}>
     <div className="col-8 p-5 shadow bg-white rounded">
         <center><span className='fs-2 fw-bolder'><h2>View Student Details</h2></span></center>
         <div className='ui search'>

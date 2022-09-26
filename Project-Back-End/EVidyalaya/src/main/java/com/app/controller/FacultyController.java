@@ -57,24 +57,6 @@ public class FacultyController {
 		}
 	}
 
-//	@PostMapping("/uploadAssignment")
-//	public ResponseEntity<FacultyAssignmentUploadResponse> uploadFile(@RequestParam("file") MultipartFile multipartFile)
-//			throws IOException {
-//		try {
-//			String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
-//			long size = multipartFile.getSize();
-//			String filecode = FileUploadUtils.saveFile(fileName, multipartFile);
-//			FacultyAssignmentUploadResponse response = new FacultyAssignmentUploadResponse();
-//			response.setFileName(fileName);
-//			response.setSize(size);
-//			response.setDownloadUri("/downloadFile/" + filecode);
-//			response.setFilecode(filecode);
-//			return new ResponseEntity<>(response, HttpStatus.OK);
-//		} catch (RuntimeException e) {
-//			throw new RuntimeException("Something went wrong");
-//		}
-//	}
-
 	@GetMapping("/downloadFile/{fileCode}")
 	public ResponseEntity<?> downloadFile(@PathVariable("fileCode") String fileCode) {
 		FileDownloadUtil downloadUtil = new FileDownloadUtil();

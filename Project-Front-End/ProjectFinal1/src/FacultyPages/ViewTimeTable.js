@@ -4,6 +4,7 @@ import FacultyNavBar from './FacultyNavBar'
 import { useEffect ,useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import axios from 'axios';
+import { toast, ToastContainer } from 'react-toastify';
 
 function ViewTimeTable() {
   
@@ -56,20 +57,45 @@ function ViewTimeTable() {
     };
 
     axios.delete(`http://localhost:8080/faculty/viewtimetable/delete/${id}`,config).then((response) => {
-      alert("TimeTable record with Id " + id + " deleted!");
-  
-      navigate('/faculty/viewtimetable')
-      navigate('/faculty/viewnoticeboard')
-    }).catch(error => {
-      alert("Error Ocurred in remove TimeTable :" + error);
-    });
-  
-  }
 
+      alert("Timetable record " + id + " deleted!");
+      toast.success('Timetable Record Deleted With Id ' + id + ' Succesfully ', {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      })
+    }).catch(error => {
+      toast.error(' Something Went Wrong !!!', {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      alert("Error!!!");
+    })
+  }
   return(
     <div> <FacultyNavBar/>
+    <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     <div className='cotainer-fluid' style={{overflow:"auto"}}>
-    <div className="row justify-content-around align-items-center" style={{height :"98vh" , marginTop:0}}>
+    <div className="row justify-content-around align-items-center" style={{height :"98vh" , marginTop:35}}>
     <div className="col-8 p-5 shadow bg-white rounded">
         <center><span className='fs-2 fw-bolder'><h2>View TimeTable Details</h2></span></center>
         <div className='ui search'>

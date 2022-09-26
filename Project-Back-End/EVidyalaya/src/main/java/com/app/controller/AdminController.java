@@ -104,6 +104,7 @@ public class AdminController {
 	@GetMapping("/editstudent/{id}")
 	public ResponseEntity<?> getStudentByStudentId(@PathVariable Long id) {
 		User u = adminService.getStudentById(id);
+
 		HashMap<String, Object> ht = new HashMap<String, Object>();
 		if (u == null)
 			return new ResponseEntity<>(new ApiResponse("Invalid Emp ID !!!!!!!!!!!!!!!!"), HttpStatus.NOT_FOUND);

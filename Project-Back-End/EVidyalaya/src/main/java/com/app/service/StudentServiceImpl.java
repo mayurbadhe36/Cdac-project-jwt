@@ -1,22 +1,13 @@
 package com.app.service;
 
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.util.List;
-import java.util.Optional;
-
-import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.app.custom_exceptions.ResourceNotFoundException;
-import com.app.dto.AssignmentAnswerDto;
 import com.app.entities.Assignment;
 import com.app.entities.AssignmentAnswer;
 import com.app.entities.NoticeBoard;
@@ -64,33 +55,6 @@ public class StudentServiceImpl implements IStudentService {
 
 		return assignRepo.save(answer);
 	}
-
-//	@Override
-//	public boolean checkUploadAnswerByUser(Long userId, Long assignmentId) {
-//		return assignRepo.existsByStudentAndAssignmentId(userId, assignmentId);
-//	}
-//
-//	@Override
-//	public String checkGradedByUser(Long userId, Long assignmentId) {
-//		AssignmentAnswer as = assignRepo.findByStudentAndAssignmentId(userId, assignmentId);
-//		if (as != null) {
-//			return as.getGrade();
-//		}
-//		return null;
-//	}
-//
-//	@Override
-//	public User updateProfile(User u) {
-//
-//		User oldUser = userRepo.findById(u.getId()).get();
-//		if (oldUser != null) {
-//			u.setPassword(oldUser.getPassword());
-//			u.setRole(oldUser.getRole());
-//			return userRepo.save(u);
-//		}
-//
-//		return null;
-//	}
 
 	@Override
 	public List<Assignment> getAllAssignment() {

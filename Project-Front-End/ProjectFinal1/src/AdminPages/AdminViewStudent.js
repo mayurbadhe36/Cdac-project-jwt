@@ -3,6 +3,7 @@ import AdminNavBar from './AdminNavBar';
 import {useNavigate} from 'react-router-dom';
 import { useEffect ,useState} from 'react';
 import axios from 'axios';
+import { toast, ToastContainer } from 'react-toastify';
 
 function AdminViewStudent() {
   useEffect(() => {  
@@ -43,8 +44,8 @@ function AdminViewStudent() {
             setData((data)=>({students:data.students,isFetching:false}));
         }
     };
-          fetchstudents();
-      }, []);
+        fetchstudents();
+      },[]);
 
  const removeStudent=(id) => {
   const config = {
@@ -53,22 +54,49 @@ function AdminViewStudent() {
     },
   };
   axios.delete(`http://localhost:8080/admin/viewstudent/delete/${id}`,config).then((response) => {
-   
-  alert("Student record with Id " + id + " deleted!");
-    navigate('/admin/viewstudent')
-    navigate('/admin/viewstudent')
+
+    alert("Student record with Id  " + id + " deleted!")
+    toast.success('Student Record Deleted With Id ' + id + ' Succesfully ', {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    })
+
   }).catch(error => {
-    alert("Error Ocurred in remove Student :" + error);
-  });
-
+    toast.error(' Something Went Wrong !!!', {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+    alert("Error!!!");
+  })
+  navigate('/admin/viewstudent')
 }
-
   return(
     <div>
            <AdminNavBar></AdminNavBar>
+          <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
            <form>
-      <div className='cotainer-fluid'>
-       <div className="row justify-content-around align-items-center" style={{height :"98vh" , marginTop:0}}>
+      <div className='cotainer-fluid' style={{overflow:"auto"}}>
+       <div className="row justify-content-around align-items-center" style={{height :"98vh" , marginTop:-60}}>
        <div className="col-8 p-5 shadow bg-white rounded">
            <center><span style={{fontFamily:"unset"}}><h2>View Student Details </h2></span></center>
            <div className='ui search'>

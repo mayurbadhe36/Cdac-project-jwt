@@ -41,10 +41,7 @@ function  Signin(){
         })
         .then(result =>{
                console.log(result.data)
-               //setUser(result.data);
-              // alert('success')
-               //localStorage.setItem("user", JSON.stringify(result.data));
-
+               
                return result.data;      
                }).catch(error => {
                      alert('Invalid Credential')

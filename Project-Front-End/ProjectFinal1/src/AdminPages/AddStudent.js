@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import AdminNavBar from './AdminNavBar';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 function AddStudent() {
   useEffect(() => {
@@ -26,6 +27,9 @@ function AddStudent() {
     address: "",
     password: ""
   })
+  const current = new Date();
+  const date = `${current.getFullYear()}-0${current.getMonth()+1}-${current.getDate()}`;
+
   function submit(e) {
     e.preventDefault();
     const config = {
@@ -41,10 +45,33 @@ function AddStudent() {
       address: data.address,
       password: data.password
     }, config)
-      .then( 
-        alert("Student Added Successfully!!")
-      )
-        navigate('/admin')
+    .then(response => { 
+      // alert("Faculty Added Succesfully!!!",response.data);
+       toast.success('Student Added Succesfully!!!', {
+         position: "top-center",
+         autoClose: 5000,
+         hideProgressBar: false,
+         closeOnClick: true,
+         pauseOnHover: true,
+         draggable: true,
+         progress: undefined,
+         });
+       console.log("",response.data)
+     }
+          ).catch(error =>{
+           toast.error(' Something Went Wrong !!!', {
+             position: "top-center",
+             autoClose: 5000,
+             hideProgressBar: false,
+             closeOnClick: true,
+             pauseOnHover: true,
+             draggable: true,
+             progress: undefined,
+             });
+          // alert("Error!!!");
+          })
+         
+         navigate('/admin')
   }
   
 
@@ -59,7 +86,7 @@ function AddStudent() {
     <div>
       <AdminNavBar />
       <div className='cotainer-fluid'>
-        <div className="row justify-content-around align-items-center" style={{ height: "98vh", marginTop: 0 }}>
+        <div className="row justify-content-around align-items-center" style={{ height: "98vh", marginTop:15 }}>
           <div className="col-4 p-4 shadow bg-white rounded">
             <span className='fs-3 mb-3 fw-bolder' style={{ fontFamily: "unset" }}><center><h2>Add Student</h2></center></span>
             <form onSubmit={(e) => submit(e)}>
@@ -70,12 +97,12 @@ function AddStudent() {
               </div>
               <div className='mb-3'>
                 <label>Date Of Birth</label>
-                <input type='date' className='form-control' placeholder='Enter date' onChange={(e) => handle(e)} id='dob' value={data.value}></input>
+                <input type='date' className='form-control' placeholder='Enter date' onChange={(e) => handle(e)} id='dob' value={data.value} max={date}></input>
               </div>
 
               <div className='mb-3'>
                 <label>Mobile: </label>
-                <input type='text' className='col-4' onChange={(e) => handle(e)} id='mobNo' value={data.value}></input>
+                <input type='text' className='col-4' onChange={(e) => handle(e)} id='mobNo' value={data.value} pattern="\d{10}" maxLength={10}></input>
                 &nbsp;
                 <label>Email:</label>
                 <input type='email' className='col-5' onChange={(e) => handle(e)} id='email' value={data.value}></input ><br></br>
