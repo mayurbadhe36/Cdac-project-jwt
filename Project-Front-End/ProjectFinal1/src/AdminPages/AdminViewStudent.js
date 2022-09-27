@@ -54,7 +54,6 @@ function AdminViewStudent() {
     },
   };
   axios.delete(`http://localhost:8080/admin/viewstudent/delete/${id}`,config).then((response) => {
-
     alert("Student record with Id  " + id + " deleted!")
     toast.success('Student Record Deleted With Id ' + id + ' Succesfully ', {
       position: "top-center",
@@ -65,7 +64,6 @@ function AdminViewStudent() {
       draggable: true,
       progress: undefined,
     })
-
   }).catch(error => {
     toast.error(' Something Went Wrong !!!', {
       position: "top-center",
@@ -75,8 +73,8 @@ function AdminViewStudent() {
       pauseOnHover: true,
       draggable: true,
       progress: undefined,
-    });
-    alert("Error!!!");
+    })
+    alert("Error!!!")
   })
   navigate('/admin/viewstudent')
 }
@@ -96,7 +94,7 @@ function AdminViewStudent() {
       />
            <form>
       <div className='cotainer-fluid' style={{overflow:"auto"}}>
-       <div className="row justify-content-around align-items-center" style={{height :"98vh" , marginTop:-60}}>
+       <div className="row justify-content-around align-items-center" style={{height :"98vh" , marginTop:-50}}>
        <div className="col-8 p-5 shadow bg-white rounded">
            <center><span style={{fontFamily:"unset"}}><h2>View Student Details </h2></span></center>
            <div className='ui search'>

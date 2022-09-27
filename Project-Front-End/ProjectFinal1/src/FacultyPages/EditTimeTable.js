@@ -86,7 +86,7 @@ const timeId=param.id;
             platform:platform,
             link:link
          },config).then((response) => {
-          //         alert(" record updated  Succesfully");
+                 alert(" record updated  Succesfully");
                    toast.success('Timetable Updated Succesfully !!', {
                      position: "top-center",
                      autoClose: 5000,

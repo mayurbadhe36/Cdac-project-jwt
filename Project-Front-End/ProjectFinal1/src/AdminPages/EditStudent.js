@@ -45,7 +45,7 @@ function EditStudent() {
     setAddress(e.target.value)
   }
   const current = new Date();
-  const date = `${current.getFullYear()}-0${current.getMonth() + 1}-${current.getDate()}`;
+  const vdate = `${current.getFullYear()}-0${current.getMonth() + 1}-${current.getDate()}`;
   useEffect(() => {
     const config = {
       headers: {
@@ -123,15 +123,15 @@ function EditStudent() {
               </div>
               <div className='mb-3'>
                 <label for="dob" >Date Of Birth</label>
-                <input type='date' className='form-control' placeholder='Enter date' onChange={handleDob} value={dob} name="dob" max={date}></input>
+                <input type='date' className='form-control' placeholder='Enter date' onChange={handleDob} value={dob} name="dob" max={vdate}></input>
               </div>
 
               <div className='mb-3'>
                 <label for="mobNo">Mobile: </label>
                 <input type='text' className='col-4' onChange={handleMobNo} value={mobNo} name="mobNo" maxLength={10} pattern="\d{10}"></input>
-                &nbsp;
+                &nbsp;<br></br>
                 <label for="email">Email:</label>
-                <input type='email' className='col-5' onChange={handleEmail} value={email} name="email" ></input ><br></br>
+                <input type='email' className='col-5' onChange={handleEmail} value={email} name="email"></input ><br></br>
 
               </div>
               <div className='mb-3'>
@@ -142,9 +142,7 @@ function EditStudent() {
               <div className='mb-3'>
                 <button className='btn btn-primary form-control'>Update</button>
               </div>
-
             </form>
-
           </div>
         </div>
       </div>

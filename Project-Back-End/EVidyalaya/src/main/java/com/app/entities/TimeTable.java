@@ -25,10 +25,8 @@ public class TimeTable extends BaseEntity {
 	@FutureOrPresent(message = "Date Should be in future")
 	private Date date;
 	@Column(name = "starttime")
-	@Future(message = "Time Should be in future")
 	private LocalTime startTime;
 	@Column(name = "endtime")
-	@Future(message = "TIme Should be in future")
 	private LocalTime endTime;
 //	@NotBlank(message = "faculty id is required")
 	@ManyToOne

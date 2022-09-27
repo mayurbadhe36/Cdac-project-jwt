@@ -44,7 +44,16 @@ function  Signin(){
                
                return result.data;      
                }).catch(error => {
-                     alert('Invalid Credential')
+                     alert('Bad Credential')
+                     toast.warn('Bad Credential !!', {
+                            position: "top-center",
+                            autoClose: 5000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                            });
                      reset()
                       console.log(error)})
                //console.log(JSON.stringify(user1));

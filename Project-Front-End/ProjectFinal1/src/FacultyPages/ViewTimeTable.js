@@ -94,8 +94,9 @@ function ViewTimeTable() {
         draggable
         pauseOnHover
       />
+      <form>
     <div className='cotainer-fluid' style={{overflow:"auto"}}>
-    <div className="row justify-content-around align-items-center" style={{height :"98vh" , marginTop:35}}>
+    <div className="row justify-content-around align-items-center" style={{height :"98vh" , marginTop:-20}}>
     <div className="col-8 p-5 shadow bg-white rounded">
         <center><span className='fs-2 fw-bolder'><h2>View TimeTable Details</h2></span></center>
         <div className='ui search'>
@@ -147,7 +148,7 @@ function ViewTimeTable() {
                 {platform}
               </td>
               <td>
-                {link}
+              <td><a href={link}>Click Here</a></td>
               </td>
               <td>
               <button className="button border-white" onClick={()=>navigate(`/faculty/edittimetable/${id}`)}><i className="bi bi-pencil-square"></i></button>
@@ -163,6 +164,7 @@ function ViewTimeTable() {
           </div>
          
       </div>
+      </form>
       </div>
 
   )

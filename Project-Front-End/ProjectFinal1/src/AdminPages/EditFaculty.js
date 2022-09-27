@@ -46,7 +46,7 @@ function EditFaculty() {
               setAddress(e.target.value)
           }
 const current = new Date();
-  const date = `${current.getFullYear()}-0${current.getMonth()+1}-${current.getDate()}`;
+  const vdate = `${current.getFullYear()}-0${current.getMonth()+1}-${current.getDate()}`;
   useEffect(() => {
     const config = {
       headers: {
@@ -108,6 +108,7 @@ const current = new Date();
   //            alert("Error!!!");
             })
             navigate('/admin/viewfaculty')
+            navigate('/admin/viewfaculty')
     }
     
   return (
@@ -126,7 +127,7 @@ const current = new Date();
            </div>
            <div className='mb-3'>
              <label for ="dob" >Date Of Birth</label>
-             <input type ='date' className='form-control' placeholder='Enter date'onChange={handleDob} value={dob} name="dob" max={date}></input>
+             <input type ='date' className='form-control' placeholder='Enter date'onChange={handleDob} value={dob} name="dob" max={vdate}></input>
            </div>
           
            <div className='mb-3'>

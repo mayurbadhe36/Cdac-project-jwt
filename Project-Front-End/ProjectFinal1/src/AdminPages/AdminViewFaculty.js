@@ -78,7 +78,6 @@ function AdminViewFaculty() {
       alert("Error!!!");
     })
     navigate('/admin/viewfaculty')
-
   }
   return (
     <div>
@@ -94,8 +93,9 @@ function AdminViewFaculty() {
         draggable
         pauseOnHover
       />
+      <form>
       <div className='cotainer-fluid' style={{ overflow: "auto" }}>
-        <div className="row justify-content-around align-items-center" style={{ height: "98vh", marginTop: 50 }}>
+        <div className="row justify-content-around align-items-center" style={{ height: "98vh", marginTop: -50 }}>
           <div className=" col-8 p-5 shadow mb-5 bg-white rounded">
             <center><span style={{ fontFamily: "unset" }}><h2>View Faculty Details </h2></span></center>
             <div className='ui search'>
@@ -157,7 +157,9 @@ function AdminViewFaculty() {
               </tbody>
             </table> </div>
         </div>
-      </div></div>
+        
+      </div></form></div>
+      
   )
 }
 

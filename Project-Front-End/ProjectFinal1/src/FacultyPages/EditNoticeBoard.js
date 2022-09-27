@@ -27,7 +27,8 @@ const noticeId =param.id;
   const [moduleName,setModuleName]=useState('')
   const [date,setDate]=useState('')
   const [description,setDescription]=useState('')
-
+  const current = new Date();
+  const vdate = `${current.getFullYear()}-0${current.getMonth() + 1}-${current.getDate()}`;
             const handleModuleName = (e) => {
               setModuleName(e.target.value)
           }
@@ -119,7 +120,7 @@ pauseOnHover
            </div>
            <div className='mb-3'>
              <label>Date</label>
-             <input type ='date' className='form-control' placeholder='Enter date' onChange={handleDate} value={date} name="date"></input>
+             <input type ='date' className='form-control' placeholder='Enter date' onChange={handleDate} value={date} name="date" min={vdate}></input>
            </div>
            <div className='mb-3'>
              <label>Description</label><br></br>

@@ -17,7 +17,7 @@ function AddFaculty1() {
     }
 });
 const current = new Date();
-  const date = `${current.getFullYear()}-0${current.getMonth()+1}-${current.getDate()}`;
+  const vdate = `${current.getFullYear()}-0${current.getMonth()+1}-${current.getDate()}`;
  
  
     const url="http://localhost:8080/admin/addfaculty"
@@ -97,7 +97,7 @@ const current = new Date();
            </div>
            <div className='mb-3'>
              <label>Date Of Birth</label>
-             <input type ='date' className='form-control' placeholder='Enter date'onChange={(e)=>handle(e)} id='dob' value={data.value} max={date}></input>
+             <input type ='date' className='form-control' placeholder='Enter date'onChange={(e)=>handle(e)} id='dob' value={data.value} max={vdate}></input>
          
            </div>
           

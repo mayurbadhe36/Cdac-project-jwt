@@ -95,6 +95,7 @@ function ViewAssignment() {
         draggable
         pauseOnHover
       />
+      <form>
       <div className='container-fluid' style={{overflow:"auto"}}>
        <div className="row justify-content-around align-items-center" style={{height :"98vh" , marginTop:35}}>
        <div className="col-8 p-5 shadow bg-white rounded">
@@ -136,7 +137,7 @@ function ViewAssignment() {
         </tbody>
     </table> </div>
     </div>
- </div></div>  
+ </div></form></div>  
 )
 }
 

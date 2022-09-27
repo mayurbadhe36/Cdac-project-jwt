@@ -69,14 +69,6 @@ function Contact() {
                         </div>
                     </div>
                 </td>
-
-                <td>
-                    <div className="card text-bg-white mb-3" style={{Width: '200px', marginLeft:'30px'}}>
-                            <div className="card-body">
-                            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScEMSwsJdpqbIdMvYHOfffgWkqtLVDiEAZ1B7-PvrVIvAJ52A/viewform?embedded=true" width="220" height="110" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
-                        </div>
-                    </div>
-                </td>
             </tr>
         </table>
      </div>

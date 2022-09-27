@@ -23,7 +23,7 @@ function AddNoticeBoard() {
   const id = sessionStorage.getItem("userId");
   const url = `http://localhost:8080/faculty/addnoticeboard/${id}`
   const current = new Date();
-  const date = `${current.getFullYear()}-0${current.getMonth() + 1}-${current.getDate()}`;
+  const vdate = `${current.getFullYear()}-0${current.getMonth() + 1}-${current.getDate()}`;
   const config = {
     headers: {
       Authorization: `Bearer ${sessionStorage.getItem("jwtToken")}`,
@@ -95,7 +95,7 @@ function AddNoticeBoard() {
               </div>
               <div className='mb-3'>
                 <label>Date</label>
-                <input type='date' className='form-control' placeholder='Enter date' onChange={(e) => handle(e)} id='date' value={data.value} min={date}></input>
+                <input type='date' className='form-control' placeholder='Enter date' onChange={(e) => handle(e)} id='date' value={data.value} min={vdate}></input>
               </div>
               <div className='mb-3'>
                 <label>Description</label><br></br>

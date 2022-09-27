@@ -23,7 +23,7 @@ function AddTimeTable() {
     },
   };
   const current = new Date();
-  const date = `${current.getFullYear()}-0${current.getMonth() + 1}-${current.getDate()}`;
+  const vdate = `${current.getFullYear()}-0${current.getMonth() + 1}-${current.getDate()}`;
  
 
   const id=sessionStorage.getItem("userId");
@@ -95,7 +95,7 @@ function AddTimeTable() {
             <form onSubmit={submit}>
            <div className='mb-3'>
              <label>Date</label>
-             <input type ='date' className='form-control' placeholder='Enter date' onChange={(e)=>handle(e)} id='date' value={data.value} min={date}></input>
+             <input type ='date' className='form-control' placeholder='Enter date' onChange={(e)=>handle(e)} id='date' value={data.value} min={vdate}></input>
            </div>
            <div className='mb-3'>
               <label>Start Time: </label>

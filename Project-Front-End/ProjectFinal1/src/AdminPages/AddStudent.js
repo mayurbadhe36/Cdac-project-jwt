@@ -28,7 +28,7 @@ function AddStudent() {
     password: ""
   })
   const current = new Date();
-  const date = `${current.getFullYear()}-0${current.getMonth()+1}-${current.getDate()}`;
+  const vdate = `${current.getFullYear()}-0${current.getMonth()+1}-${current.getDate()}`;
 
   function submit(e) {
     e.preventDefault();
@@ -97,7 +97,7 @@ function AddStudent() {
               </div>
               <div className='mb-3'>
                 <label>Date Of Birth</label>
-                <input type='date' className='form-control' placeholder='Enter date' onChange={(e) => handle(e)} id='dob' value={data.value} max={date}></input>
+                <input type='date' className='form-control' placeholder='Enter date' onChange={(e) => handle(e)} id='dob' value={data.value} max={vdate}></input>
               </div>
 
               <div className='mb-3'>

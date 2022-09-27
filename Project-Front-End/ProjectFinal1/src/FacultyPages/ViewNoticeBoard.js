@@ -58,6 +58,7 @@ const removeNoticeBoard =(id) => {
   axios.delete(`http://localhost:8080/faculty/viewnoticeboard/delete/${id}`,config).then((response) => {
 
     alert("Noticeboard record with Id " + id + " deleted!");
+    
     toast.success('Timetable Record Deleted With Id ' + id + ' Succesfully ', {
       position: "top-center",
       autoClose: 5000,
@@ -94,8 +95,9 @@ const removeNoticeBoard =(id) => {
           draggable
           pauseOnHover
 />
+<form>
         <div className='cotainer-fluid' style={{overflow:"auto"}}>
-    <div className="row justify-content-around align-items-center" style={{height :"98vh" , marginTop:30}}>
+    <div className="row justify-content-around align-items-center" style={{height :"98vh" , marginTop:-15}}>
     <div className="col-8 p-5 shadow bg-white rounded">
         <center><span className='fs-2 fw-bolder'><h2>Notice Board</h2></span></center>
         <div className='ui search'>
@@ -149,7 +151,8 @@ const removeNoticeBoard =(id) => {
           </div> 
         </div>
         </div>
-        </div>   
+        </div> 
+        </form>  
     </div>
   )
 }
