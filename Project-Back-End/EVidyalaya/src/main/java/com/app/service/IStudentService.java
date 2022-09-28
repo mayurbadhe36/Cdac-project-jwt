@@ -19,12 +19,6 @@ public interface IStudentService {
 
 	public AssignmentAnswer uploadAssignment(AssignmentAnswer answer);
 
-	// public boolean checkUploadAnswerByUser(Long userId, Long assignmentId);
-//
-//	public String checkGradedByUser(Long userId, Long assignmentId);
-//
-//	public User updateProfile(User u);
-
 	public AssignmentAnswer saveAssignmentAnswerFile(Long assignId, Long studentId, String fileName) throws IOException;
 
 	public List<Assignment> getAllAssignment();

@@ -49,8 +49,4 @@ public class TimeTable extends BaseEntity {
 		return faculty.getId();
 	}
 
-//	public String getFacultyName() {
-//		return faculty.getName();
-//	}
-
 }

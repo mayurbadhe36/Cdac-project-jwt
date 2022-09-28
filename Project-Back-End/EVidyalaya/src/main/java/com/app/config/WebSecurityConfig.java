@@ -21,19 +21,17 @@ import com.app.filters.JWTRequestFilter;
 
 @EnableWebSecurity // mandatory
 @Configuration // mandatory
-//@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig {
 
 	@Autowired
 	private JWTRequestFilter filter;
-
+	
 	// configure BCryptPassword encode bean
-
+	
 	@Bean
 	public PasswordEncoder encoder() {
 		return new BCryptPasswordEncoder();
 	}
-
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		http.cors().and().csrf().disable().exceptionHandling().authenticationEntryPoint((request, response, ex) -> {
@@ -44,7 +42,6 @@ public class WebSecurityConfig {
 								// access to all
 								// urls with
 								// /auth
-				// only required for JS clnts (react / angular)
 				.antMatchers(HttpMethod.OPTIONS).permitAll().anyRequest().authenticated().and().sessionManagement()
 				.sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
 				.addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class);

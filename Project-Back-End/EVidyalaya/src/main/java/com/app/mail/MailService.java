@@ -1,6 +1,5 @@
 package com.app.mail;
 
-import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 

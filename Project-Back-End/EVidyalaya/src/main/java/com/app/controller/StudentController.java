@@ -92,7 +92,6 @@ public class StudentController {
 			response.setFileName(fileName);
 			response.setSize(size);
 			response.setDownloadUri("/downloadFile/" + filecode);
-			// String filelocation = "/downloadFile/" + filecode;
 			studentService.saveAssignmentAnswerFile(assignId, studentId, filecode);
 			response.setAssignmentId(assignId);
 			response.setStudentId(studentId);
@@ -104,9 +103,7 @@ public class StudentController {
 
 	@GetMapping("/result/{studentId}")
 	public List<AssignmentAnswer> getAllAssignmentWithStudentId(@PathVariable Long studentId) {
-
 		System.out.println("id" + studentId);
-
 		return studentService.getAllAssignmentByStudentIdWithGrade(studentId);
 	}
 }

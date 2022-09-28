@@ -46,9 +46,6 @@ public class JWTRequestFilter extends OncePerRequestFilter {
 					// create Authentication object , wrapping user details lifted from DB
 					UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
 							userDetails.getUsername(), userDetails.getPassword(), userDetails.getAuthorities());
-					//set details in auth object
-		//			authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-//					Save this authentication token in the sec ctx.
 					SecurityContextHolder.getContext().setAuthentication(authentication);
 				}
 				else

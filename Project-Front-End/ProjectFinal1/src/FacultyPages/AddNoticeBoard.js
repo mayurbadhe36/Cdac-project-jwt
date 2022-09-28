@@ -23,7 +23,7 @@ function AddNoticeBoard() {
   const id = sessionStorage.getItem("userId");
   const url = `http://localhost:8080/faculty/addnoticeboard/${id}`
   const current = new Date();
-  const vdate = `${current.getFullYear()}-0${current.getMonth() + 1}-${current.getDate()}`;
+  const vdate = `${current.getFullYear()}-${current.getMonth() + 1}-${current.getDate()}`;
   const config = {
     headers: {
       Authorization: `Bearer ${sessionStorage.getItem("jwtToken")}`,
@@ -52,39 +52,38 @@ function AddNoticeBoard() {
       date: data.date,
       description: data.description,
       moduleName: data.moduleName
-    }, config).then(response => { 
+    }, config).then(response => {
       // alert("Noticeboard Added Succesfully!!!",response.data);
-       toast.success('Noticeboard Added Succesfully!!!', {
-         position: "top-center",
-         autoClose: 5000,
-         hideProgressBar: false,
-         closeOnClick: true,
-         pauseOnHover: true,
-         draggable: true,
-         progress: undefined,
-         });
-       console.log("",response.data)
-     }
-          ).catch(error =>{
-           toast.error(' Something Went Wrong !!!', {
-             position: "top-center",
-             autoClose: 5000,
-             hideProgressBar: false,
-             closeOnClick: true,
-             pauseOnHover: true,
-             draggable: true,
-             progress: undefined,
-             });
-          // alert("Error!!!");
-          })
-          navigate("/faculty")
+      toast.success('Noticeboard Added Succesfully!!!', {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      console.log("", response.data)
+    }
+    ).catch(error => {
+      toast.error(' Something Went Wrong !!!', {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    })
+    navigate("/faculty")
   }
 
   return (
     <div>
       <FacultyNavBar />
       <div className='cotainer-fluid'>
-        <div className="row justify-content-around align-items-center" style={{ height: "98vh",marginTop:-25 }}>
+        <div className="row justify-content-around align-items-center" style={{ height: "98vh", marginTop: -25 }}>
           <div className="col-4 p-5 shadow bg-white rounded">
             <span className='fs-3 mb-3 fw-bolder'><center><h2>Add Noticeboard</h2></center></span>
             <br></br>

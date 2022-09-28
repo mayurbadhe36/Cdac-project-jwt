@@ -74,13 +74,13 @@ function ViewAssignmentAnswer() {
   }, []);
 
 
- const getGrade = function (e) {
-     setGrade(e.target.value);
-     console.log(grade);
-   }
-const reset=function(){
-  document.getElementById("remark").value='';
-}
+  const getGrade = function (e) {
+    setGrade(e.target.value);
+    console.log(grade);
+  }
+  const reset = function () {
+    document.getElementById("remark").value = '';
+  }
 
   const getRemark = function (e) {
     setRemark(e.target.value);
@@ -97,10 +97,10 @@ const reset=function(){
     axios.patch(gradeUrl, {
       grade: grade
     }, config).then(
-      res =>{
-       // alert("Grade Added Successfully!!")
-      console.log(res.data)
-    }
+      res => {
+        // alert("Grade Added Successfully!!")
+        console.log(res.data)
+      }
     )
     navigate('/faculty/viewassignmentanswer')
     toast.success('Grade Given Succesfully!!!', {
@@ -124,8 +124,8 @@ const reset=function(){
     const remarkUrl = `http://localhost:8080/faculty/viewassignmentanswer/remark/${id}`
     axios.patch(remarkUrl, {
       remark: remark
-    }, config,).then(res =>{
-     // alert("Remark Added Successfully!!")
+    }, config,).then(res => {
+      // alert("Remark Added Successfully!!")
       console.log(res.data)
     }
     )
@@ -146,18 +146,18 @@ const reset=function(){
     <div>
       <FacultyNavBar />
       <ToastContainer
-              position="top-center"
-              autoClose={5000}
-              hideProgressBar={false}
-              newestOnTop={false}
-              closeOnClick
-              rtl={false}
-              pauseOnFocusLoss
-              draggable
-              pauseOnHover
-                   />
-      <div className='cotainer-fluid' style={{overflow:"auto"}}>
-        <div className="row justify-content-around align-items-center" style={{ height: "98vh", marginTop:20}}>
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
+      <div className='cotainer-fluid' style={{ overflow: "auto" }}>
+        <div className="row justify-content-around align-items-center" style={{ height: "98vh", marginTop: -30 }}>
           <div className="col-8 p-5 shadow bg-white rounded">
             <center><span className='fw-bolder fs-2'><h2>View Assignment Answers</h2></span></center>
             <div className='ui search'>
@@ -169,7 +169,7 @@ const reset=function(){
             <table className="table table-striped table-secondary table-hover">
               <thead className='table-dark'>
                 <tr>
-                  <th>Sr No.</th>
+                  <th>Id</th>
                   <th>Module Name</th>
                   <th>Student Name</th>
                   <th>Download</th>
@@ -193,7 +193,7 @@ const reset=function(){
                         <td><button className="btn btn-primary" onClick={() => handleDownload(fileName)}>Download</button></td>
                         <td>
                           <td>
-                            <select name="grade" id="grade" onChange={(e)=>getGrade(e)}>
+                            <select name="grade" id="grade" onChange={(e) => getGrade(e)}>
                               <option value="A+">A+</option>
                               <option value="A">A</option>
                               <option value="B+">B+</option>
@@ -204,10 +204,10 @@ const reset=function(){
                               <option value="D">D</option>
                               <option value="F">F</option>
                             </select>
-                            <button onClick={()=>handleGrade(id)}>Grade</button>
+                            <button onClick={() => handleGrade(id)}>Grade</button>
                           </td>
                           <td>
-                            <input type='text' id="remark"  name="remark" placeholder='enter remark' onChange={(e) => getRemark(e)} />
+                            <input type='text' id="remark" name="remark" placeholder='enter remark' onChange={(e) => getRemark(e)} />
                             <button className="button muted-button" onClick={() => handleRemark(id)}>Remark</button>
                           </td>
                         </td>

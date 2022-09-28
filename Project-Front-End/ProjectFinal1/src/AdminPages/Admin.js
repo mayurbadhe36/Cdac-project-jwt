@@ -40,47 +40,33 @@ function Admin() {
               <tr>
                 <td className='p-1 px-5 ' >
                   <div className="card text-bg-success mb-3" style={{ maxWidth: '18rem' }}>
-                    {/* <div className="card-header">TimeTable</div> */}
                     <div className="card-body">
 
                       <NavLink to="/admin/addfaculty" style={{ textDecoration: 'none' }}> <h5 className="card-title p-4 text-white"> <i class="bi bi-person-plus-fill"></i> &nbsp; Add Faculty</h5></NavLink>
-                      {/* <h5 className="card-title p-5">TimeTable</h5> */}
-                      {/* <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> */}
                     </div>
                   </div>
                 </td>
 
                 <td>
                   <div className="card text-bg-success mb-3" style={{ maxWidth: '18rem' }}>
-                    {/* <div className="card-header">NoticeBoard</div> */}
                     <div className="card-body">
                       <NavLink to="/admin/viewfaculty" style={{ textDecoration: 'none' }}><h5 className="card-title p-4 text-white"> <i class="bi bi-eye-fill"></i> &nbsp; View Faculty</h5> </NavLink>
-                      {/* <h5 className="card-title p-5">NoticeBoard</h5> */}
-                      {/* <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> */}
                     </div>
                   </div>
                 </td>
-
               </tr>
-
               <tr>
                 <td className='p-3 px-5'>
                   <div className="card text-bg-success mb-3" style={{ maxWidth: '18rem' }}>
-                    {/* <div className="card-header">Faculty</div> */}
                     <div className="card-body">
                       <NavLink to="/admin/addstudent" style={{ textDecoration: 'none' }}><h5 className="card-title p-4 text-white"><i class="bi bi-person-plus-fill"></i> &nbsp;Add Student</h5> </NavLink>
-                      {/* <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> */}
                     </div>
                   </div>
                 </td>
-
                 <td>
                   <div className="card text-bg-success mb-3" style={{ maxWidth: '18rem' }}>
-                    {/* <div className="card-header">Assignment</div> */}
                     <div className="card-body">
                       <NavLink to="/admin/viewstudent" style={{ textDecoration: 'none' }}><h5 className="card-title p-4 text-white"> <i class="bi bi-eye-fill"></i> &nbsp; View Student</h5> </NavLink>
-                      {/* <h5 className="card-title p-5">Assignment</h5> */}
-                      {/* <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> */}
                     </div>
                   </div>
                 </td>
@@ -89,10 +75,6 @@ function Admin() {
           </div>
         </div>
       </div>
-
-
-
-
     </div>
   )
 }

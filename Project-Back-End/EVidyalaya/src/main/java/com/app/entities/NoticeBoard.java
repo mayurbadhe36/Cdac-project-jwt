@@ -38,12 +38,4 @@ public class NoticeBoard extends BaseEntity {
 		return faculty.getId();
 	}
 
-//	public String getFacultyName() {
-//		return faculty.getName();
-//	}
-//
-//	public void setFacultyName(String facultyname) {
-//		this.facultyName = facultyname;
-//	}
-
 }

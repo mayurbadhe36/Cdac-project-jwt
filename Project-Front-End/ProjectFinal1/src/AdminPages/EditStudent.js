@@ -45,7 +45,7 @@ function EditStudent() {
     setAddress(e.target.value)
   }
   const current = new Date();
-  const vdate = `${current.getFullYear()}-0${current.getMonth() + 1}-${current.getDate()}`;
+  const vdate = `${current.getFullYear()}-${current.getMonth() + 1}-${current.getDate()}`;
   useEffect(() => {
     const config = {
       headers: {

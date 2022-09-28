@@ -28,7 +28,7 @@ function AddStudent() {
     password: ""
   })
   const current = new Date();
-  const vdate = `${current.getFullYear()}-0${current.getMonth()+1}-${current.getDate()}`;
+  const vdate = `${current.getFullYear()}-${current.getMonth() + 1}-${current.getDate()}`;
 
   function submit(e) {
     e.preventDefault();
@@ -45,35 +45,35 @@ function AddStudent() {
       address: data.address,
       password: data.password
     }, config)
-    .then(response => { 
-      // alert("Faculty Added Succesfully!!!",response.data);
-       toast.success('Student Added Succesfully!!!', {
-         position: "top-center",
-         autoClose: 5000,
-         hideProgressBar: false,
-         closeOnClick: true,
-         pauseOnHover: true,
-         draggable: true,
-         progress: undefined,
-         });
-       console.log("",response.data)
-     }
-          ).catch(error =>{
-           toast.error(' Something Went Wrong !!!', {
-             position: "top-center",
-             autoClose: 5000,
-             hideProgressBar: false,
-             closeOnClick: true,
-             pauseOnHover: true,
-             draggable: true,
-             progress: undefined,
-             });
-          // alert("Error!!!");
-          })
-         
-         navigate('/admin')
+      .then(response => {
+        // alert("Faculty Added Succesfully!!!",response.data);
+        toast.success('Student Added Succesfully!!!', {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        console.log("", response.data)
+      }
+      ).catch(error => {
+        toast.error(' Something Went Wrong !!!', {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        // alert("Error!!!");
+      })
+
+    navigate('/admin')
   }
-  
+
 
   function handle(e) {
     const newData = { ...data }
@@ -86,7 +86,7 @@ function AddStudent() {
     <div>
       <AdminNavBar />
       <div className='cotainer-fluid'>
-        <div className="row justify-content-around align-items-center" style={{ height: "98vh", marginTop:15 }}>
+        <div className="row justify-content-around align-items-center" style={{ height: "98vh", marginTop: 15 }}>
           <div className="col-4 p-4 shadow bg-white rounded">
             <span className='fs-3 mb-3 fw-bolder' style={{ fontFamily: "unset" }}><center><h2>Add Student</h2></center></span>
             <form onSubmit={(e) => submit(e)}>

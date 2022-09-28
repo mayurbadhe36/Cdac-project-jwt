@@ -58,33 +58,4 @@ public interface IFacultyService {
 
 	public Assignment updateAssignmentDetails(Assignment detachedAssignment, Long id);
 
-//	public NoticeBoard getNoticeById(Long id);
-//
-//	public NoticeBoard updateNoticeboard(NoticeBoard notice);
-//
-//	public boolean deleteNotice(long id);
-//
-//	public Assignment getAssignmentById(long id);
-//
-//	public Assignment updateAssignment(Assignment assignment);
-//
-//	public boolean deleteAssignment(long id);
-//
-//	public List<AssignmentAnswer> getAllSubmitAnswerByFacultyId(long id);
-//
-//	public AssignmentAnswer getAssignmentAnswerById(long id);
-//
-//	public boolean updateGrade(long aid, String grade);
-//
-//	public String checkGrade(long fid, long aid);
-//
-//	public User updateProfile(User u);
-//
-//	public TimeTable addTimeTable(TimeTable timeTable);
-//
-//	public TimeTable getTimeTableById(long id);
-
-//	public boolean deleteTimeTable(long id);
-//
-//	public TimeTable updateTimeTable(TimeTable timeTable);
 }

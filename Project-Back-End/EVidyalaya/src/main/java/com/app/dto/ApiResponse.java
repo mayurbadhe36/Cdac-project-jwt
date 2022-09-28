@@ -16,11 +16,9 @@ import lombok.ToString;
 public class ApiResponse {
 	private LocalDateTime timeStamp;
 	private String message;
-	// private HttpStatus st;
 
 	public ApiResponse(String message) {
 		super();
-		// this.st = st;
 		this.message = message;
 		this.timeStamp = LocalDateTime.now();
 	}

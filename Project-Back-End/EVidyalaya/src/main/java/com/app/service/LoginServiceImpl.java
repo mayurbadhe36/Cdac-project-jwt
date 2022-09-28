@@ -21,5 +21,4 @@ public class LoginServiceImpl implements ILoginService {
 			return user;
 		return null;
 	}
-
 }

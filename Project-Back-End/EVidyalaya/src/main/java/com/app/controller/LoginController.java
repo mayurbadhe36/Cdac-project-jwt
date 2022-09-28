@@ -33,12 +33,7 @@ public class LoginController {
 	// dep : Auth mgr
 	@Autowired
 	private AuthenticationManager manager;
-	// dep : user service for handling users
 	
-	
-	// add a method to authenticate user . In case of success --send back token ,
-	// o.w
-	// send back err mesg
 	@PostMapping
 	public ResponseEntity<?> validateUserCreateToken(@RequestBody @Valid AuthRequest request) {
 		// store incoming user details(not yet validated) into Authentication object
@@ -52,7 +47,7 @@ public class LoginController {
 			log.info("auth token again " + authenticatedDetails);
 			// => auth succcess
 			return ResponseEntity.ok(new AuthResp("Auth successful!", utils.generateJwtToken(authenticatedDetails),authenticatedDetails));
-		} catch (BadCredentialsException e) { // lab work : replace this by a method in global exc handler
+		} catch (BadCredentialsException e) { 
 			// send back err resp code
 			System.out.println("err " + e);
 			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(e.getMessage());
